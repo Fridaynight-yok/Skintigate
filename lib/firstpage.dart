@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:outlined_text/outlined_text.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -10,16 +11,107 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Center(child: Text("One touch to unlock your perfect skin match")),
-          ElevatedButton(onPressed: () {}, child: Text("Search Product")),
-          ElevatedButton(onPressed: () {}, child: Text("Scain Ingredients")),
-          ElevatedButton(onPressed: () {}, child: Text("My Profile")),
-        ],
-      ),
+    return Stack(
+      children: [
+        Image.asset(
+          "assets/image/first_page_.png",
+          fit: BoxFit.cover,
+          height: MediaQuery.sizeOf(context).height,
+        ),
+        Scaffold(
+          appBar: AppBar(backgroundColor: Colors.transparent),
+          backgroundColor: Colors.transparent,
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                OutlinedText(
+                  text: Text(
+                    "One touch to unlock\nyour perfect skin\n match",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 23,
+                      color: Color.fromRGBO(32, 76, 62, 1),
+                    ),
+                  ),
+                  strokes: [
+                    OutlinedTextStroke(color: Colors.white, width: 1.2),
+                  ],
+                ),
+
+                SizedBox(height: 100),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+                    side: BorderSide(color: Color.fromRGBO(10, 107, 75, 0.698)),
+                    elevation: 5,
+                  ),
+                  child: SizedBox(
+                    height: 55,
+                    width: double.infinity,
+                    child: Center(
+                      child: Text(
+                        "Search Product",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromRGBO(35, 96, 77, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 28),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(152, 215, 194, 0.6),
+                    side: BorderSide(color: Color.fromRGBO(10, 107, 75, 0.698)),
+                    elevation: 5,
+                  ),
+                  child: SizedBox(
+                    height: 55,
+                    width: double.infinity,
+                    child: Center(
+                      child: Text(
+                        "Scan Ingredients",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromRGBO(35, 96, 77, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 28),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(13, 152, 106, 1),
+                    elevation: 5,
+                  ),
+                  child: SizedBox(
+                    height: 55,
+                    width: double.infinity,
+                    child: Center(
+                      child: Text(
+                        "My Profile",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromRGBO(253, 254, 254, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

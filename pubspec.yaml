@@ -39,6 +39,7 @@ dependencies:
   cloud_firestore: ^5.6.9
   firebase_auth: ^5.6.0
   firebase_core: ^3.14.0
+  outlined_text: ^1.0.1
 
 flutter_launcher_icons:
   image_path: "assets/icon/app_icon.png"
@@ -46,12 +47,12 @@ flutter_launcher_icons:
   background_color: "#ffffff"
 
 flutter_native_splash:
-  color: "#42a5f5"
+  color: "#ffffff"
   image: "assets/icon/app_icon.png"
   android: true
   ios: false
   android_12:
-    color: "#42a5f5"
+    color: "#ffffff"
     image: "assets/icon/app_icon.png"
 
 
@@ -71,16 +72,14 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/icon/
+    - assets/image/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
