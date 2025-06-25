@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:outlined_text/outlined_text.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage({super.key});
+class LandingPage extends StatelessWidget {
+  const LandingPage({super.key});
 
-  @override
-  State<FirstPage> createState() => _FirstPageState();
-}
-
-class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
