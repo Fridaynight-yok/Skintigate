@@ -22,6 +22,7 @@ class _LoginState extends State<Login> {
               style: TextStyle(
                 fontSize: 23,
                 color: Color.fromRGBO(32, 76, 75, 1),
+                fontWeight: FontWeight.w200,
               ),
             ),
             SizedBox(height: 18),
@@ -30,10 +31,10 @@ class _LoginState extends State<Login> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                // enabledBorder: OutlineInputBorder(
-                //   borderRadius: BorderRadius.circular(20),
-                //   borderSide: BorderSide(color: Color.fromRGBO(32, 76, 75, 1)),
-                // ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                ),
                 hintText: "email",
               ),
             ),
@@ -44,10 +45,10 @@ class _LoginState extends State<Login> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                // enabledBorder: OutlineInputBorder(
-                //   borderRadius: BorderRadius.circular(20),
-                //   borderSide: BorderSide(color: Color.fromRGBO(32, 76, 75, 1)),
-                // ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                ),
                 hintText: "password",
               ),
             ),
