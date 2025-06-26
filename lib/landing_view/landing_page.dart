@@ -36,9 +36,9 @@ class LandingPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+                    backgroundColor: Color.fromRGBO(255, 255, 255, .8),
                     side: BorderSide(color: Color.fromRGBO(10, 107, 75, 0.698)),
-                    elevation: 5,
+                    elevation: 10,
                   ),
                   child: SizedBox(
                     height: 55,
@@ -61,7 +61,7 @@ class LandingPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(152, 215, 194, 0.6),
                     side: BorderSide(color: Color.fromRGBO(10, 107, 75, 0.698)),
-                    elevation: 5,
+                    elevation: 10,
                   ),
                   child: SizedBox(
                     height: 55,
@@ -83,7 +83,7 @@ class LandingPage extends StatelessWidget {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(13, 152, 106, 1),
-                    elevation: 5,
+                    elevation: 20,
                   ),
                   child: SizedBox(
                     height: 55,
