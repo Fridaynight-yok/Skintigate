@@ -111,56 +111,71 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            Container(
-              width: 180,
-              margin: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 8,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(20),
+            InkWell(
+              onTap: () {
+                Get.toNamed("/product");
+              },
+              child: Container(
+                width: 180,
+                margin: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 8,
+                      offset: Offset(0, 4),
                     ),
-                    child: Image.network(
-                      "https://assets.central.co.th//adobe/dynamicmedia/deliver/dm-aid--cfa34aa7-47d3-487d-b0fb-3c8eebb17d29/sk-ii-online-sk2hrftessence160ml-cds12035687-1.jpg?preferwebp=true&quality=60",
-                      height: 150,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
+                      child: Image.network(
+                        "https://assets.central.co.th//adobe/dynamicmedia/deliver/dm-aid--cfa34aa7-47d3-487d-b0fb-3c8eebb17d29/sk-ii-online-sk2hrftessence160ml-cds12035687-1.jpg?preferwebp=true&quality=60",
+                        height: 150,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "SK-II Facial Treatment Essence",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF204C3E),
-                            fontSize: 14,
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "SK-II Facial Treatment Essence",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF204C3E),
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 6),
-                        Text(
-                          "มี PITERA ช่วยเสริมความชุ่มชื้น, ฟื้นฟูเกราะผิว และลดการระคายเคือง",
-                          style: TextStyle(fontSize: 12, color: Colors.black87),
-                        ),
-                      ],
+                          SizedBox(height: 6),
+                          Text(
+                            "มี PITERA ช่วยเสริมความชุ่มชื้น, ฟื้นฟูเกราะผิว และลดการระคายเคือง",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          Text(
+                            "฿1200",
+                            style: TextStyle(
+                              color: Colors.redAccent,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 15),

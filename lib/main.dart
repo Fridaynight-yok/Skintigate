@@ -6,6 +6,7 @@ import 'package:skintigate/authen_view/register.dart';
 import 'package:skintigate/home_view/home.dart';
 import 'package:skintigate/landing_view/landing_page.dart';
 import 'package:skintigate/main_view.dart';
+import 'package:skintigate/product_detail_view/product_detail.dart';
 import 'package:skintigate/profile_view/profile.dart';
 import 'package:skintigate/scan_view/scan_view.dart';
 
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/scan", page: () => ScanView()),
         GetPage(name: "/profile", page: () => Profile()),
         GetPage(name: "/mainview", page: () => MainView()),
+        GetPage(name: "/product", page: () => ProductDetail()),
       ],
     );
   }
