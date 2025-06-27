@@ -12,7 +12,7 @@ class _SavedState extends State<Saved> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Saved")),
-      body: Container(color: Colors.blue),
+      body: Column(),
     );
   }
 }
