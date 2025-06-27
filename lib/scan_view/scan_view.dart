@@ -84,6 +84,17 @@ class _ScanViewState extends State<ScanView> {
                   fontSize: 19,
                 ),
               ),
+              SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(13, 152, 106, 1),
+                ),
+                child: SizedBox(
+                  width: 50,
+                  child: Text("Upload", style: TextStyle(color: Colors.white)),
+                ),
+              ),
             ],
           ),
         ),

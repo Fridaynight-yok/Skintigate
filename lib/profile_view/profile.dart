@@ -71,8 +71,6 @@ class _ProfileState extends State<Profile> {
             onPressed: () {},
             child: Text("Log out", style: TextStyle(color: Colors.black87)),
           ),
-          SizedBox(height: 10),
-          ElevatedButton(onPressed: () {}, child: Text("Upload")),
         ],
       ),
     );
