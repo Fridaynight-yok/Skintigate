@@ -61,7 +61,7 @@ class LandingPage extends StatelessWidget {
                 SizedBox(height: 28),
                 ElevatedButton(
                   onPressed: () {
-                    Get.toNamed("/scan");
+                    Get.toNamed("/mainview", arguments: 1);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(152, 215, 194, 0.6),
