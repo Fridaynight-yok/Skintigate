@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:skintigate/authen_view/login.dart';
 import 'package:skintigate/authen_view/register.dart';
 import 'package:skintigate/home_view/home.dart';
 import 'package:skintigate/landing_view/landing_page.dart';
 import 'package:skintigate/main_view.dart';
+import 'package:skintigate/profile_view/profile.dart';
+import 'package:skintigate/scan_view/scan_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,12 +20,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Skintigate',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MainView(),
+
+      initialRoute: "/",
+      getPages: [
+        GetPage(name: "/", page: () => LandingPage()),
+        GetPage(name: "/login", page: () => Login()),
+        GetPage(name: "/register", page: () => Register()),
+        GetPage(name: "/home", page: () => Home()),
+        GetPage(name: "/scan", page: () => ScanView()),
+        GetPage(name: "/profile", page: () => Profile()),
+        GetPage(name: "/mainview", page: () => MainView()),
+      ],
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:outlined_text/outlined_text.dart';
 
 class LandingPage extends StatelessWidget {
@@ -34,7 +35,9 @@ class LandingPage extends StatelessWidget {
 
                 SizedBox(height: 100),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed("/mainview", arguments: 0);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(255, 255, 255, .8),
                     side: BorderSide(color: Color.fromRGBO(10, 107, 75, 0.698)),
@@ -57,7 +60,9 @@ class LandingPage extends StatelessWidget {
                 ),
                 SizedBox(height: 28),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed("/scan");
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(152, 215, 194, 0.6),
                     side: BorderSide(color: Color.fromRGBO(10, 107, 75, 0.698)),
@@ -80,7 +85,9 @@ class LandingPage extends StatelessWidget {
                 ),
                 SizedBox(height: 28),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed("/mainview", arguments: 3);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(13, 152, 106, 1),
                     elevation: 20,
