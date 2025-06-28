@@ -19,7 +19,7 @@ class _ProfileState extends State<Profile> {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.arrow_back),
+          icon: InkWell(child: Icon(Icons.arrow_back)),
         ),
       ),
       body: Column(
@@ -33,21 +33,51 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             title: Text(
-              "Your name",
+              "คนสวยข้ามภพ",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            subtitle: Text("yourname@gmail.com"),
+            subtitle: Text("skintigate@gmail.com"),
             trailing: Icon(Icons.edit, color: Colors.grey),
           ),
-          Divider(),
-          // Fields
-          ListTile(title: Text("Name"), onTap: () {}),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "ชื่อ",
+                border: InputBorder.none,
+              ),
+            ),
+          ),
           Divider(height: 1, color: const Color.fromARGB(255, 189, 188, 188)),
-          ListTile(title: Text("Email"), onTap: () {}),
-          Divider(height: 1),
-          ListTile(title: Text("Phone"), onTap: () {}),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "อีเมล",
+                border: InputBorder.none,
+              ),
+            ),
+          ),
           Divider(height: 1, color: const Color.fromARGB(255, 189, 188, 188)),
-          ListTile(title: Text("Address"), onTap: () {}),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "เบอร์",
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+          Divider(height: 1, color: const Color.fromARGB(255, 189, 188, 188)),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "ที่อยู่",
+                border: InputBorder.none,
+              ),
+            ),
+          ),
           SizedBox(height: 24),
           // Save Button
           Padding(
@@ -59,10 +89,7 @@ class _ProfileState extends State<Profile> {
                 minimumSize: Size(double.infinity, 48),
               ),
               onPressed: () {},
-              child: Text(
-                "Save Changes",
-                style: TextStyle(color: Colors.white),
-              ),
+              child: Text("บันทึก", style: TextStyle(color: Colors.white)),
             ),
           ),
           SizedBox(height: 16),

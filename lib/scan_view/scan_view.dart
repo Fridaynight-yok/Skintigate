@@ -29,7 +29,7 @@ class _ScanViewState extends State<ScanView> {
                 child: Center(
                   child: OutlinedText(
                     text: Text(
-                      "Please choose either\ninput or upload photo",
+                      "เลือก 1 วิธี\nเพื่อสแกนส่วนผสม",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color.fromRGBO(32, 76, 62, 1),
@@ -37,14 +37,14 @@ class _ScanViewState extends State<ScanView> {
                       ),
                     ),
                     strokes: [
-                      OutlinedTextStroke(color: Colors.white, width: 1.2),
+                      OutlinedTextStroke(color: Colors.white, width: 1.5),
                     ],
                   ),
                 ),
               ),
               SizedBox(height: 40),
               Text(
-                "1. Input Ingredients",
+                "1.ก็อปปี้วางส่วนผสม ",
                 style: TextStyle(
                   color: Color.fromRGBO(32, 76, 62, 1),
                   fontSize: 19,
@@ -78,7 +78,7 @@ class _ScanViewState extends State<ScanView> {
               ),
               SizedBox(height: 30),
               Text(
-                "2. Upload Photo",
+                "2. ถ่ายรูปส่วนผสมหลังกล่อง",
                 style: TextStyle(
                   color: Color.fromRGBO(32, 76, 62, 1),
                   fontSize: 19,
@@ -92,7 +92,12 @@ class _ScanViewState extends State<ScanView> {
                 ),
                 child: SizedBox(
                   width: 50,
-                  child: Text("Upload", style: TextStyle(color: Colors.white)),
+                  child: Center(
+                    child: Text(
+                      "อัพรูป",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
             ],
