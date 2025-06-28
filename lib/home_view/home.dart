@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
           children: [
             TextField(
               decoration: InputDecoration(
-                hintText: "Search products",
+                hintText: "ค้นหาสินค้า",
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
             Row(
               children: [
                 Text(
-                  "Browse by Skin Types",
+                  "ค้นหาตามหมวดหมู่",
                   style: TextStyle(
                     color: Color.fromRGBO(32, 76, 62, 1),
                     fontSize: 20,
@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
                 ),
                 Spacer(),
                 Text(
-                  "View all",
+                  "ดูทั้งหมด",
                   style: TextStyle(
                     color: Color.fromRGBO(32, 76, 62, 1),
                     decoration: TextDecoration.underline,
@@ -180,7 +180,7 @@ class _HomeState extends State<Home> {
             ),
             SizedBox(height: 15),
             Text(
-              "Explore more",
+              "ดูเพิ่มเติม",
               style: TextStyle(
                 color: Color.fromRGBO(32, 76, 62, 1),
                 fontSize: 20,

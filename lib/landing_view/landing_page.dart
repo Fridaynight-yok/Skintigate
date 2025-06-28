@@ -23,10 +23,10 @@ class LandingPage extends StatelessWidget {
               children: [
                 OutlinedText(
                   text: Text(
-                    "One touch to unlock\nyour perfect skin\n match",
+                    "One click to unlock\nyour perfect skin\nmatch",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 23,
+                      fontSize: 24,
                       color: Color.fromRGBO(32, 76, 62, 1),
                     ),
                   ),
@@ -46,15 +46,20 @@ class LandingPage extends StatelessWidget {
                   child: SizedBox(
                     height: 55,
                     width: double.infinity,
-                    child: Center(
-                      child: Text(
-                        "Search Product",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color.fromRGBO(35, 96, 77, 1),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.search),
+                        SizedBox(width: 2),
+                        Text(
+                          "ค้นหาสินค้า",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color.fromRGBO(35, 96, 77, 1),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),
@@ -71,15 +76,20 @@ class LandingPage extends StatelessWidget {
                   child: SizedBox(
                     height: 55,
                     width: double.infinity,
-                    child: Center(
-                      child: Text(
-                        "Scan Ingredients",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color.fromRGBO(35, 96, 77, 1),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.fullscreen),
+                        SizedBox(width: 2),
+                        Text(
+                          "สแกนส่วนผสม",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color.fromRGBO(35, 96, 77, 1),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),
@@ -95,15 +105,20 @@ class LandingPage extends StatelessWidget {
                   child: SizedBox(
                     height: 55,
                     width: double.infinity,
-                    child: Center(
-                      child: Text(
-                        "My Profile",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color.fromRGBO(253, 254, 254, 1),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.person, color: Colors.white),
+                        SizedBox(width: 2),
+                        Text(
+                          "โปรไฟล์",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color.fromRGBO(253, 254, 254, 1),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),
