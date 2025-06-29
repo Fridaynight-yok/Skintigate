@@ -12,8 +12,8 @@ class _SavedState extends State<Saved> {
     {
       'name': 'Biore UV Aqua Rich Watery Essense',
       'size': '30 ml',
-      'oldPrice': '\฿240',
-      'newPrice': '\฿180',
+      'claim': 'ป้องกันแสงแดดด้วย',
+      'newPrice': '฿',
       'rating': 4.6,
       'image':
           'https://www.konvy.com/static/team/2024/0503/17147356019660_600x600.jpg',
@@ -21,8 +21,8 @@ class _SavedState extends State<Saved> {
     {
       'name': 'N°1 De Chanel Revitalizing Eye Serum',
       'size': '80 ml',
-      'oldPrice': '',
-      'newPrice': '\฿150',
+      'claim': 'เซรั่มบำรุงรอบดวงตา',
+      'newPrice': '฿฿฿',
       'rating': 4.6,
       'image':
           'https://www.chanel.com/images/t_one/w_0.40,h_0.40,c_crop/q_auto:good,f_autoplus,fl_lossy,dpr_1.1/w_1020/n-1-de-chanel-revitalizing-eye-serum-smooths-restores-refreshes-0-53fl-oz--packshot-default-140040-9540966580254.jpg',
@@ -30,8 +30,8 @@ class _SavedState extends State<Saved> {
     {
       'name': 'Cure Natural Aqua Gel',
       'size': '120 ml',
-      'oldPrice': '\฿350',
-      'newPrice': '\฿250',
+      'claim': 'เจลผลัดเซลล์ผิวอย่างอ่อนโยน',
+      'newPrice': '฿',
       'rating': 4.6,
       'image':
           'https://mochimochi.nz/cdn/shop/files/curenaturalaquagel.webp?v=1685667687',
@@ -39,8 +39,8 @@ class _SavedState extends State<Saved> {
     {
       'name': 'UV Sun Serum SPF50+ Pa++++',
       'size': '250 ml',
-      'oldPrice': '',
-      'newPrice': '\฿1800',
+      'claim': 'กันแดดเนื้อเซรั่มซึมเร็วไม่เหนียวเหนอะ',
+      'newPrice': '฿',
       'rating': 4.6,
       'image': 'https://clearnose.co.th/wp-content/uploads/2022/01/CUV_1.png',
     },
@@ -108,27 +108,17 @@ class _SavedState extends State<Saved> {
                   style: const TextStyle(fontSize: 13, color: Colors.grey),
                 ),
                 const SizedBox(height: 4),
-                Row(
-                  children: [
-                    if (item['oldPrice'] != '')
-                      Text(
-                        item['oldPrice'],
-                        style: const TextStyle(
-                          fontSize: 13,
-                          color: Colors.grey,
-                          decoration: TextDecoration.lineThrough,
-                        ),
-                      ),
-                    if (item['oldPrice'] != '') const SizedBox(width: 6),
-                    Text(
-                      item['newPrice'],
-                      style: const TextStyle(
-                        fontSize: 15,
-                        color: Colors.redAccent,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                Text(
+                  item['claim'] ?? "N/A",
+                  style: const TextStyle(fontSize: 10, color: Colors.black),
+                ),
+                Text(
+                  item['newPrice'],
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Color.fromARGB(255, 237, 106, 97),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 2),
                 Row(

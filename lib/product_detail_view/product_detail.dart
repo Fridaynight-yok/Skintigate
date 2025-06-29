@@ -48,6 +48,7 @@ class _ProductDetailState extends State<ProductDetail> {
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 60),
             Center(
@@ -89,6 +90,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         TextSpan(
                           text: "ผิวที่แนะนำ: ผิวแห้ง, ผิวหมองคล้ำ, ผิวมัน",
                           style: TextStyle(
+                            fontSize: 13,
                             fontWeight: FontWeight.normal,
                             color: Colors.black87,
                           ),
