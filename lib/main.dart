@@ -9,6 +9,7 @@ import 'package:skintigate/main_view.dart';
 import 'package:skintigate/product_detail_view/product_detail.dart';
 import 'package:skintigate/profile_view/profile.dart';
 import 'package:skintigate/scan_view/scan_view.dart';
+import 'package:skintigate/skintype_view/skintype.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/profile", page: () => Profile()),
         GetPage(name: "/mainview", page: () => MainView()),
         GetPage(name: "/product", page: () => ProductDetail()),
+        GetPage(name: "/skintype", page: () => SkinTypePage()),
       ],
     );
   }

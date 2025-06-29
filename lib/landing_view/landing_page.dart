@@ -30,7 +30,9 @@ class LandingPage extends StatelessWidget {
                       color: Color.fromRGBO(32, 76, 62, 1),
                     ),
                   ),
-                  strokes: [OutlinedTextStroke(color: Colors.white, width: 2)],
+                  strokes: [
+                    OutlinedTextStroke(color: Colors.white, width: 2.4),
+                  ],
                 ),
 
                 SizedBox(height: 100),

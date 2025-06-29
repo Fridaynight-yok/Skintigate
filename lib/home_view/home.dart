@@ -46,11 +46,16 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 Spacer(),
-                Text(
-                  "ดูทั้งหมด",
-                  style: TextStyle(
-                    color: Color.fromRGBO(32, 76, 62, 1),
-                    decoration: TextDecoration.underline,
+                InkWell(
+                  onTap: () {
+                    Get.toNamed('/skintype');
+                  },
+                  child: Text(
+                    "ดูทั้งหมด",
+                    style: TextStyle(
+                      color: Color.fromRGBO(32, 76, 62, 1),
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
               ],
