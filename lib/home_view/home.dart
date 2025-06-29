@@ -102,7 +102,7 @@ class _HomeState extends State<Home> {
                     width: 50,
                     child: Center(
                       child: Text(
-                        "สูงวัย",
+                        "ผิวมีอายุ",
                         style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
                       ),
                     ),

@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
                   borderRadius: BorderRadius.circular(20),
                   borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
                 ),
-                hintText: "name",
+                hintText: "ชื่อ",
               ),
             ),
             SizedBox(height: 18),
@@ -49,7 +49,7 @@ class _RegisterState extends State<Register> {
                   borderRadius: BorderRadius.circular(20),
                   borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
                 ),
-                hintText: "email",
+                hintText: "อีเมล",
               ),
             ),
             SizedBox(height: 18),
@@ -62,7 +62,7 @@ class _RegisterState extends State<Register> {
                   borderRadius: BorderRadius.circular(20),
                   borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
                 ),
-                hintText: "password",
+                hintText: "รหัสผ่าน",
               ),
             ),
             SizedBox(height: 18),
@@ -76,7 +76,7 @@ class _RegisterState extends State<Register> {
                 width: double.infinity,
                 child: Center(
                   child: Text(
-                    "Sign Up",
+                    "สมัคร",
                     style: TextStyle(
                       fontSize: 15,
                       color: const Color.fromARGB(255, 255, 255, 255),
@@ -86,9 +86,9 @@ class _RegisterState extends State<Register> {
               ),
             ),
             SizedBox(height: 18),
-            Text("Already have an account?", style: TextStyle(fontSize: 15)),
+            Text("มีบัญชีแล้ว?", style: TextStyle(fontSize: 15)),
             Text(
-              "Log in",
+              "เข้าสู่ระบบ",
               style: TextStyle(
                 color: Color.fromRGBO(13, 152, 106, 1),
                 fontWeight: FontWeight.bold,

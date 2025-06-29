@@ -95,7 +95,9 @@ class _ProfileState extends State<Profile> {
           SizedBox(height: 16),
           // Logout
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed("/login");
+            },
             child: Text(
               "ออกจากระบบ",
               style: TextStyle(

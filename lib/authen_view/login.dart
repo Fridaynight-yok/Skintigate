@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,7 +14,12 @@ class _LoginState extends State<Login> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -21,7 +27,7 @@ class _LoginState extends State<Login> {
           children: [
             SizedBox(height: MediaQuery.sizeOf(context).height * .16),
             Text(
-              "To enter a profile,\nyou have to log in",
+              "ต้องการเข้าโปรไฟล์\n  กรุณาเข้าสู่ระบบ",
               style: TextStyle(
                 fontSize: 23,
                 color: Color.fromRGBO(32, 76, 75, 1),
@@ -38,7 +44,7 @@ class _LoginState extends State<Login> {
                   borderRadius: BorderRadius.circular(20),
                   borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
                 ),
-                hintText: "email",
+                hintText: "อีเมล",
               ),
             ),
             SizedBox(height: 18),
@@ -52,7 +58,7 @@ class _LoginState extends State<Login> {
                   borderRadius: BorderRadius.circular(20),
                   borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
                 ),
-                hintText: "password",
+                hintText: "รหัสผ่าน",
               ),
             ),
             SizedBox(height: 18),
@@ -67,7 +73,7 @@ class _LoginState extends State<Login> {
                 width: double.infinity,
                 child: Center(
                   child: Text(
-                    "Login",
+                    "Log in",
                     style: TextStyle(
                       fontSize: 15,
                       color: const Color.fromARGB(255, 255, 255, 255),
@@ -77,12 +83,17 @@ class _LoginState extends State<Login> {
               ),
             ),
             SizedBox(height: 18),
-            Text("Don't have an account?", style: TextStyle(fontSize: 15)),
-            Text(
-              "Sign Up",
-              style: TextStyle(
-                color: Color.fromRGBO(13, 152, 106, 1),
-                fontWeight: FontWeight.bold,
+            Text("ไม่มีบัญชี?", style: TextStyle(fontSize: 15)),
+            InkWell(
+              onTap: () {
+                Get.toNamed("/register");
+              },
+              child: Text(
+                "สมัคร",
+                style: TextStyle(
+                  color: Color.fromRGBO(13, 152, 106, 1),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],
