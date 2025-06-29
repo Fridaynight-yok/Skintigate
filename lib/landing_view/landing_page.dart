@@ -65,7 +65,7 @@ class LandingPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 28),
+                SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
                     Get.toNamed("/mainview", arguments: 1);
@@ -95,7 +95,7 @@ class LandingPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 28),
+                SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
                     Get.toNamed("/mainview", arguments: 3);
