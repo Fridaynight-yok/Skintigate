@@ -164,6 +164,23 @@ class _HomeState extends State<Home> {
                               color: Colors.black87,
                             ),
                           ),
+                          Row(
+                            children: [
+                              Text(
+                                "4.6",
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                                size: 14,
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),

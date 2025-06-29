@@ -32,13 +32,16 @@ class _MainViewState extends State<MainView> {
           setState(() {});
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.fullscreen), label: "Scan"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_filled),
+            label: "หน้าหลัก",
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.fullscreen), label: "สแกน"),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border_outlined),
-            label: "Saved",
+            label: "ถูกใจ",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "โปรไฟล์"),
         ],
       ),
     );

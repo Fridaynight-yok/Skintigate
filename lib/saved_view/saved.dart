@@ -112,14 +112,6 @@ class _SavedState extends State<Saved> {
                   item['claim'] ?? "N/A",
                   style: const TextStyle(fontSize: 10, color: Colors.black),
                 ),
-                Text(
-                  item['newPrice'],
-                  style: const TextStyle(
-                    fontSize: 15,
-                    color: Color.fromARGB(255, 237, 106, 97),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
                 const SizedBox(height: 2),
                 Row(
                   children: [

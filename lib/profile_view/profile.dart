@@ -96,7 +96,13 @@ class _ProfileState extends State<Profile> {
           // Logout
           TextButton(
             onPressed: () {},
-            child: Text("Log out", style: TextStyle(color: Colors.black87)),
+            child: Text(
+              "ออกจากระบบ",
+              style: TextStyle(
+                color: Colors.black87,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ],
       ),
