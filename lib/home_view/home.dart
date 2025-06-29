@@ -164,13 +164,6 @@ class _HomeState extends State<Home> {
                               color: Colors.black87,
                             ),
                           ),
-                          Text(
-                            "฿1200",
-                            style: TextStyle(
-                              color: Colors.redAccent,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
                         ],
                       ),
                     ),

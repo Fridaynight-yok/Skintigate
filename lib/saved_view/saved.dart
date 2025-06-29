@@ -10,36 +10,39 @@ class Saved extends StatefulWidget {
 class _SavedState extends State<Saved> {
   final List<Map<String, dynamic>> products = [
     {
-      'name': 'Si Peeling...',
+      'name': 'Biore UV Aqua Rich Watery Essense',
       'size': '30 ml',
       'oldPrice': '\฿240',
       'newPrice': '\฿180',
       'rating': 4.6,
-      'image': 'assets/images/product1.png',
+      'image':
+          'https://www.konvy.com/static/team/2024/0503/17147356019660_600x600.jpg',
     },
     {
-      'name': 'Met bobo...',
+      'name': 'N°1 De Chanel Revitalizing Eye Serum',
       'size': '80 ml',
       'oldPrice': '',
       'newPrice': '\฿150',
       'rating': 4.6,
-      'image': 'assets/images/product2.png',
+      'image':
+          'https://www.chanel.com/images/t_one/w_0.40,h_0.40,c_crop/q_auto:good,f_autoplus,fl_lossy,dpr_1.1/w_1020/n-1-de-chanel-revitalizing-eye-serum-smooths-restores-refreshes-0-53fl-oz--packshot-default-140040-9540966580254.jpg',
     },
     {
-      'name': 'Freshly Face...',
+      'name': 'Cure Natural Aqua Gel',
       'size': '120 ml',
       'oldPrice': '\฿350',
       'newPrice': '\฿250',
       'rating': 4.6,
-      'image': 'assets/images/product3.png',
+      'image':
+          'https://mochimochi.nz/cdn/shop/files/curenaturalaquagel.webp?v=1685667687',
     },
     {
-      'name': 'Body Soap',
+      'name': 'UV Sun Serum SPF50+ Pa++++',
       'size': '250 ml',
       'oldPrice': '',
       'newPrice': '\฿1800',
       'rating': 4.6,
-      'image': 'assets/images/product4.png',
+      'image': 'https://clearnose.co.th/wp-content/uploads/2022/01/CUV_1.png',
     },
   ];
 
@@ -49,8 +52,8 @@ class _SavedState extends State<Saved> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
-          "Saved",
-          style: TextStyle(color: Colors.black, fontSize: 26),
+          "สินค้าที่ถูกใจ",
+          style: TextStyle(color: Color.fromRGBO(32, 76, 75, 1)),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -88,16 +91,16 @@ class _SavedState extends State<Saved> {
                     ],
                   ),
                   child: Center(
-                    child: Image.network(
-                      "https://www.konvy.com/static/team/2024/0503/17147356019660_600x600.jpg",
-                      fit: BoxFit.cover,
-                    ),
+                    child: Image.network(item['image'], fit: BoxFit.cover),
                   ),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   item['name'],
-                  style: const TextStyle(fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromRGBO(32, 76, 75, 1),
+                  ),
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
