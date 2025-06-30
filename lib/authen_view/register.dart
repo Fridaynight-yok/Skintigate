@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:skintigate/authen_view/login.dart';
+import 'package:intl/intl.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -38,12 +40,11 @@ class _RegisterState extends State<Register> {
   }
 
   Future<void> registerUser() async {
-    final inputName = nameController.text
-        .trim(); //no space bar added when user input name
+    final inputName = nameController.text.trim();
     final inputPassword = passwordController.text.trim();
     final inputEmail = emailController.text.trim();
     final inputConfirmpassoword = confirmPasswordController.text.trim();
-    final inputbday = bdayController.toString();
+    final inputbday = bdayController.text;
 
     if (inputPassword != inputConfirmpassoword) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -58,7 +59,7 @@ class _RegisterState extends State<Register> {
             password: inputPassword,
           );
       if (userInfo.user != null) {
-        final String uid = userInfo.user!.uid; //! = รับประกันว่าจะไม่ null
+        final String uid = userInfo.user!.uid;
         await FirebaseFirestore.instance.collection("members").doc(uid).set({
           "name": inputName,
           "email": inputEmail,
@@ -76,7 +77,7 @@ class _RegisterState extends State<Register> {
     } catch (e) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text("something went wrong ${e}")));
+      ).showSnackBar(SnackBar(content: Text("something went wrong $e")));
     }
   }
 
@@ -86,136 +87,186 @@ class _RegisterState extends State<Register> {
       appBar: AppBar(backgroundColor: Colors.transparent),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
-        child: Column(
-          children: [
-            SizedBox(height: MediaQuery.sizeOf(context).height * .10),
-            Text(
-              "Sign Up",
-              style: TextStyle(
-                fontSize: 23,
-                color: Color.fromRGBO(32, 76, 75, 1),
-                fontWeight: FontWeight.w200,
-              ),
-            ),
-            SizedBox(height: 18),
-            SizedBox(
-              height: 40,
-              child: TextField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
-                  ),
-                  hintText: "อีเมล",
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: MediaQuery.sizeOf(context).height * .10),
+              Text(
+                "Sign Up",
+                style: TextStyle(
+                  fontSize: 23,
+                  color: Color.fromRGBO(32, 76, 75, 1),
+                  fontWeight: FontWeight.w200,
                 ),
               ),
-            ),
-            SizedBox(height: 18),
-            SizedBox(
-              height: 40,
-              child: TextField(
-                controller: passwordController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
+              SizedBox(height: 18),
+              SizedBox(
+                height: 40,
+                child: TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                    ),
+                    hintText: "อีเมล",
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
-                  ),
-                  hintText: "รหัสผ่าน",
                 ),
               ),
-            ),
-            SizedBox(height: 18),
-            SizedBox(
-              height: 40,
-              child: TextField(
-                controller: confirmPasswordController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
+              SizedBox(height: 18),
+              SizedBox(
+                height: 40,
+                child: TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                    ),
+                    hintText: "รหัสผ่าน",
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
-                  ),
-                  hintText: "ยืนยันรหัสผ่าน",
                 ),
               ),
-            ),
-            SizedBox(height: 18),
-            SizedBox(
-              height: 40,
-              child: TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
+              SizedBox(height: 18),
+              SizedBox(
+                height: 40,
+                child: TextField(
+                  controller: confirmPasswordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                    ),
+                    hintText: "ยืนยันรหัสผ่าน",
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
-                  ),
-                  hintText: "ชื่อ",
                 ),
               ),
-            ),
-            SizedBox(height: 18),
-            SizedBox(
-              height: 40,
-              child: TextField(
-                onTap: () {
-                  print("open dialogue date time");
-                },
-                readOnly: true,
-                controller: bdayController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
+              SizedBox(height: 18),
+              SizedBox(
+                height: 40,
+                child: TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                    ),
+                    hintText: "ชื่อ",
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
-                  ),
-                  hintText: "วันเกิด",
                 ),
               ),
-            ),
-            SizedBox(height: 18),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(13, 152, 106, 1),
+              SizedBox(height: 18),
+              SizedBox(
+                height: 40,
+                child: TextField(
+                  onTap: () async {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    DateTime? pickedDate = await showDatePicker(
+                      locale: Locale("th", "TH"),
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime.now(),
+                      builder: (context, child) {
+                        return Theme(
+                          data: Theme.of(context).copyWith(
+                            colorScheme: ColorScheme.light(
+                              primary: Color.fromRGBO(13, 152, 106, 1),
+                              onPrimary: Colors.white,
+                              onSurface: Colors.black,
+                            ),
+                            textButtonTheme: TextButtonThemeData(
+                              style: TextButton.styleFrom(
+                                foregroundColor: Color.fromRGBO(
+                                  13,
+                                  152,
+                                  106,
+                                  1,
+                                ),
+                              ),
+                            ),
+                          ),
+                          child: child!,
+                        );
+                      },
+                    );
+
+                    if (pickedDate != null) {
+                      String formattedDate = DateFormat(
+                        'dd MMM yyyy',
+                        'th',
+                      ).format(pickedDate);
+                      // String formattedDate =
+                      //     "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}-${pickedDate.year}";
+                      setState(() {
+                        bdayController.text = formattedDate;
+                      });
+                    }
+                  },
+                  readOnly: true,
+                  controller: bdayController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                    ),
+                    hintText: "วันเกิด",
+                  ),
+                ),
               ),
-              child: SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: Center(
-                  child: Text(
-                    "สมัคร",
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: const Color.fromARGB(255, 255, 255, 255),
+              SizedBox(height: 18),
+              ElevatedButton(
+                onPressed: registerUser,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(13, 152, 106, 1),
+                ),
+                child: InkWell(
+                  onTap: () {
+                    registerUser();
+                  },
+                  child: SizedBox(
+                    height: 50,
+                    width: double.infinity,
+                    child: Center(
+                      child: Text(
+                        "สมัคร",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 18),
-            Text("มีบัญชีแล้ว?", style: TextStyle(fontSize: 15)),
-            Text(
-              "เข้าสู่ระบบ",
-              style: TextStyle(
-                color: Color.fromRGBO(13, 152, 106, 1),
-                fontWeight: FontWeight.bold,
+              SizedBox(height: 18),
+              Text("มีบัญชีแล้ว?", style: TextStyle(fontSize: 15)),
+              Text(
+                "เข้าสู่ระบบ",
+                style: TextStyle(
+                  color: Color.fromRGBO(13, 152, 106, 1),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:skintigate/authen_view/login.dart';
 import 'package:skintigate/authen_view/register.dart';
 import 'package:skintigate/home_view/home.dart';
@@ -10,9 +12,12 @@ import 'package:skintigate/product_detail_view/product_detail.dart';
 import 'package:skintigate/profile_view/profile.dart';
 import 'package:skintigate/scan_view/scan_view.dart';
 import 'package:skintigate/skintype_view/skintype.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Intl.defaultLocale = 'th';
+  await initializeDateFormatting('th', null);
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -27,7 +32,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-
+      supportedLocales: const [
+        Locale('en'), // English
+        Locale('th'), // Thai
+      ],
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       initialRoute: "/",
       getPages: [
         GetPage(name: "/", page: () => LandingPage()),
