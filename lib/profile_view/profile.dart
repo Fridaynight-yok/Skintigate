@@ -107,7 +107,7 @@ class _ProfileState extends State<Profile> {
               onPressed: () {},
               child: SizedBox(
                 width: 50,
-                height: 45,
+                height: 40,
                 child: Center(
                   child: Text("บันทึก", style: TextStyle(color: Colors.white)),
                 ),

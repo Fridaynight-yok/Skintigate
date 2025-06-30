@@ -92,6 +92,7 @@ class _ScanViewState extends State<ScanView> {
                 ),
                 child: SizedBox(
                   width: 50,
+                  height: 40,
                   child: Center(
                     child: Text(
                       "อัพรูป",
