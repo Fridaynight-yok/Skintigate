@@ -51,9 +51,11 @@ class _ProfileState extends State<Profile> {
           .doc(_queryDoc!.id)
           .update({'name': name, 'email': email, 'bday': bday});
 
+      _isEdit = true;
+      setState(() {});
       fetchUser();
+      Get.snackbar("success", "บันทึกสำเร็จ");
     } catch (e) {
-      print(e);
       Get.snackbar("warning", "something went wrong");
     }
   }
@@ -99,16 +101,21 @@ class _ProfileState extends State<Profile> {
             ), // padding ภายในเล็กน้อยให้ดูหายใจ
             child: ListTile(
               leading: CircleAvatar(
+                backgroundColor: Colors.white,
                 radius: 30,
-                backgroundImage: NetworkImage(
-                  'https://randomuser.me/api/portraits/women/2.jpg',
-                ),
+                backgroundImage: AssetImage("assets/icon/app_icon.png"),
               ),
               title: const Text(
-                "คนสวยข้ามภพ",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                "Welcome to Skintigate",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(32, 76, 75, 1),
+                ),
               ),
-              subtitle: const Text("skintigate@gmail.com"),
+              subtitle: const Text(
+                "Your skin is our priority",
+                style: TextStyle(color: Color.fromRGBO(32, 76, 75, 1)),
+              ),
               trailing: IconButton(
                 onPressed: () {
                   _isEdit = !_isEdit;
