@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +11,51 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
+  Map<String, dynamic>? user;
+  late TextEditingController nameController;
+  late TextEditingController emailController;
+  late TextEditingController bdayController;
+  bool _isEdit = false;
+
+  Future<void> fetchUser() async {
+    try {
+      final DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore
+          .instance
+          .collection("members")
+          .doc(uid)
+          .get();
+      if (doc.exists) {
+        setState(() {
+          nameController.text = doc.data()?["name"] ?? 'no name';
+          emailController.text = doc.data()?['email'] ?? "no email";
+          bdayController.text = doc.data()?['bday'] ?? "N/A";
+        });
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("something went wrong")));
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("something went wrong")));
+    }
+  }
+
+  Future<void> updateData() async {
+    final name = nameController.text.trim();
+
+    try {
+      await FirebaseFirestore.instance.collection("members").doc(uid).update({
+        'name': name,
+      });
+      fetchUser();
+    } catch (e) {
+      Get.snackbar("warning", "something went wrong");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

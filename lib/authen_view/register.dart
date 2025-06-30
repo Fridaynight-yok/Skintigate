@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:skintigate/authen_view/login.dart';
 import 'package:intl/intl.dart';
@@ -60,12 +61,15 @@ class _RegisterState extends State<Register> {
           );
       if (userInfo.user != null) {
         final String uid = userInfo.user!.uid;
-        await FirebaseFirestore.instance.collection("members").doc(uid).set({
-          "name": inputName,
-          "email": inputEmail,
+        final users = FirebaseFirestore.instance.collection("users");
+        await users.add({
+          'uid': uid,
+          'name': inputName,
+          'email': inputEmail,
+          "password": inputPassword,
           "bday": inputbday,
-          "createAt": FieldValue.serverTimestamp(),
         });
+
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text("Register complete")));
@@ -258,11 +262,16 @@ class _RegisterState extends State<Register> {
               ),
               SizedBox(height: 18),
               Text("มีบัญชีแล้ว?", style: TextStyle(fontSize: 15)),
-              Text(
-                "เข้าสู่ระบบ",
-                style: TextStyle(
-                  color: Color.fromRGBO(13, 152, 106, 1),
-                  fontWeight: FontWeight.bold,
+              InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: Text(
+                  "เข้าสู่ระบบ",
+                  style: TextStyle(
+                    color: Color.fromRGBO(13, 152, 106, 1),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

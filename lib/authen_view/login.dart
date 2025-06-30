@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:skintigate/profile_view/profile.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -9,6 +11,49 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  Future<void> login() async {
+    final inputEmail = emailController.text.trim();
+    final inputPassword = passwordController.text.trim();
+    try {
+      UserCredential userInfo = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+            email: inputEmail,
+            password: inputPassword,
+          );
+      if (userInfo.user != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Profile()),
+        );
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Login fails")));
+      }
+    } catch (err) {
+      Get.snackbar("Login fails", "Please try again");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +81,7 @@ class _LoginState extends State<Login> {
             ),
             SizedBox(height: 18),
             TextField(
+              controller: emailController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -48,8 +94,8 @@ class _LoginState extends State<Login> {
               ),
             ),
             SizedBox(height: 18),
-
             TextField(
+              controller: passwordController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -64,7 +110,9 @@ class _LoginState extends State<Login> {
             SizedBox(height: 18),
 
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                login();
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromRGBO(13, 152, 106, 1),
               ),

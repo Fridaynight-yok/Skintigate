@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:skintigate/authen_view/login.dart';
 import 'package:skintigate/home_view/home.dart';
 import 'package:skintigate/profile_view/profile.dart';
 import 'package:skintigate/saved_view/saved.dart';
@@ -16,7 +17,7 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   int index = Get.arguments;
-  List<Widget> screen = [Home(), ScanView(), Saved(), Profile()];
+  List<Widget> screen = [Home(), ScanView(), Saved(), Login()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
