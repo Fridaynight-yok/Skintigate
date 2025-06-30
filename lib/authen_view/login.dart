@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skintigate/profile_view/profile.dart';
+import 'package:skintigate/util/storage.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -40,10 +41,8 @@ class _LoginState extends State<Login> {
             password: inputPassword,
           );
       if (userInfo.user != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => Profile()),
-        );
+        Storage().setUserId(userInfo.user!.uid);
+        Get.toNamed("/mainview", arguments: 3);
       } else {
         ScaffoldMessenger.of(
           context,
@@ -96,6 +95,7 @@ class _LoginState extends State<Login> {
             SizedBox(height: 18),
             TextField(
               controller: passwordController,
+              obscureText: true,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),

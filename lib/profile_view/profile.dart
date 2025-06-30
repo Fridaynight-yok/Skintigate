@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../util/storage.dart';
+
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -11,49 +13,67 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final String uid = FirebaseAuth.instance.currentUser!.uid;
   Map<String, dynamic>? user;
   late TextEditingController nameController;
   late TextEditingController emailController;
   late TextEditingController bdayController;
   bool _isEdit = false;
+  QueryDocumentSnapshot<Map<String, dynamic>>? _queryDoc;
 
   Future<void> fetchUser() async {
     try {
-      final DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore
-          .instance
-          .collection("members")
-          .doc(uid)
+      final doc = await FirebaseFirestore.instance
+          .collection("users")
+          .where("uid", isEqualTo: Storage().getUserId())
           .get();
-      if (doc.exists) {
-        setState(() {
-          nameController.text = doc.data()?["name"] ?? 'no name';
-          emailController.text = doc.data()?['email'] ?? "no email";
-          bdayController.text = doc.data()?['bday'] ?? "N/A";
-        });
-      } else {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text("something went wrong")));
-      }
+
+      _queryDoc = doc.docs.first;
+      final Map data = _queryDoc!.data();
+
+      nameController.text = data['name'];
+      emailController.text = data['email'];
+      bdayController.text = data['bday'];
     } catch (e) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text("something went wrong")));
+      ).showSnackBar(SnackBar(content: Text("Something went wrong")));
     }
   }
 
   Future<void> updateData() async {
     final name = nameController.text.trim();
+    final email = emailController.text.trim();
+    final bday = bdayController.text.trim();
 
     try {
-      await FirebaseFirestore.instance.collection("members").doc(uid).update({
-        'name': name,
-      });
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(_queryDoc!.id)
+          .update({'name': name, 'email': email, 'bday': bday});
+
       fetchUser();
     } catch (e) {
+      print(e);
       Get.snackbar("warning", "something went wrong");
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    bdayController = TextEditingController();
+    emailController = TextEditingController();
+    fetchUser();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    bdayController.dispose();
+    emailController.dispose();
+    super.dispose();
   }
 
   @override
@@ -72,39 +92,37 @@ class _ProfileState extends State<Profile> {
       body: Column(
         children: [
           // Profile picture & name
-          Card(
-            elevation: 4, // ความสูงของเงา
-            margin: const EdgeInsets.symmetric(
-              horizontal: 22,
-              vertical: 10,
-            ), // ระยะห่างรอบ Card
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12), // มุมโค้ง
-            ),
-            child: Container(
-              width: double.infinity, // ให้ภายใน card ขยายเต็มแนวกว้าง
-              padding: const EdgeInsets.symmetric(
-                vertical: 12,
-              ), // padding ภายในเล็กน้อยให้ดูหายใจ
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 30,
-                  backgroundImage: NetworkImage(
-                    'https://randomuser.me/api/portraits/women/2.jpg',
-                  ),
+          Container(
+            width: double.infinity, // ให้ภายใน card ขยายเต็มแนวกว้าง
+            padding: const EdgeInsets.symmetric(
+              vertical: 12,
+            ), // padding ภายในเล็กน้อยให้ดูหายใจ
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30,
+                backgroundImage: NetworkImage(
+                  'https://randomuser.me/api/portraits/women/2.jpg',
                 ),
-                title: const Text(
-                  "คนสวยข้ามภพ",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                subtitle: const Text("skintigate@gmail.com"),
-                trailing: const Icon(Icons.edit, color: Colors.grey),
+              ),
+              title: const Text(
+                "คนสวยข้ามภพ",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: const Text("skintigate@gmail.com"),
+              trailing: IconButton(
+                onPressed: () {
+                  _isEdit = !_isEdit;
+                  setState(() {});
+                },
+                icon: Icon(Icons.edit),
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: TextField(
+              readOnly: _isEdit,
+              controller: nameController,
               decoration: InputDecoration(
                 hintText: "ชื่อ",
                 border: InputBorder.none,
@@ -115,6 +133,8 @@ class _ProfileState extends State<Profile> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: TextField(
+              readOnly: _isEdit,
+              controller: emailController,
               decoration: InputDecoration(
                 hintText: "อีเมล",
                 border: InputBorder.none,
@@ -125,6 +145,8 @@ class _ProfileState extends State<Profile> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: TextField(
+              readOnly: _isEdit,
+              controller: bdayController,
               decoration: InputDecoration(
                 hintText: "วันเกิด",
                 border: InputBorder.none,
@@ -135,6 +157,7 @@ class _ProfileState extends State<Profile> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: TextField(
+              readOnly: _isEdit,
               decoration: InputDecoration(
                 hintText: "เพศ",
                 border: InputBorder.none,
@@ -151,7 +174,9 @@ class _ProfileState extends State<Profile> {
                 // shape: StadiumBorder(),
                 // minimumSize: Size(double.infinity, 48),
               ),
-              onPressed: () {},
+              onPressed: () {
+                updateData();
+              },
               child: SizedBox(
                 width: 50,
                 height: 40,
@@ -165,7 +190,10 @@ class _ProfileState extends State<Profile> {
           // Logout
           TextButton(
             onPressed: () {
-              Get.toNamed("/login");
+              Storage().removeUserId();
+
+              ///เอาออกจากระบบ
+              Get.offAllNamed('/login');
             },
             child: Text(
               "ออกจากระบบ",

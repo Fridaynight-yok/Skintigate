@@ -17,7 +17,7 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   int index = Get.arguments;
-  List<Widget> screen = [Home(), ScanView(), Saved(), Login()];
+  List<Widget> screen = [Home(), ScanView(), Saved(), Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:outlined_text/outlined_text.dart';
+import 'package:skintigate/util/storage.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -98,8 +99,13 @@ class LandingPage extends StatelessWidget {
                 SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
-                    Get.toNamed("/mainview", arguments: 3);
+                    if (Storage().isLogin()) {
+                      Get.toNamed("/mainview", arguments: 3);
+                    } else {
+                      Get.toNamed('/login');
+                    }
                   },
+
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(13, 152, 106, 1),
                     elevation: 20,
