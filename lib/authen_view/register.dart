@@ -16,7 +16,7 @@ class _RegisterState extends State<Register> {
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(
           children: [
-            SizedBox(height: MediaQuery.sizeOf(context).height * .16),
+            SizedBox(height: MediaQuery.sizeOf(context).height * .10),
             Text(
               "Sign Up",
               style: TextStyle(
@@ -26,43 +26,83 @@ class _RegisterState extends State<Register> {
               ),
             ),
             SizedBox(height: 18),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
+            SizedBox(
+              height: 40,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                  ),
+                  hintText: "อีเมล",
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
-                ),
-                hintText: "ชื่อ",
               ),
             ),
             SizedBox(height: 18),
-
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
+            SizedBox(
+              height: 40,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                  ),
+                  hintText: "รหัสผ่าน",
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
-                ),
-                hintText: "อีเมล",
               ),
             ),
             SizedBox(height: 18),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
+            SizedBox(
+              height: 40,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                  ),
+                  hintText: "ยืนยันรหัสผ่าน",
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+              ),
+            ),
+            SizedBox(height: 18),
+            SizedBox(
+              height: 40,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                  ),
+                  hintText: "ชื่อ",
                 ),
-                hintText: "รหัสผ่าน",
+              ),
+            ),
+            SizedBox(height: 18),
+            SizedBox(
+              height: 40,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 1)),
+                  ),
+                  hintText: "วันเกิด",
+                ),
               ),
             ),
             SizedBox(height: 18),

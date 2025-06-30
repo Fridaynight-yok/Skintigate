@@ -25,9 +25,9 @@ class _LoginState extends State<Login> {
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(
           children: [
-            SizedBox(height: MediaQuery.sizeOf(context).height * .16),
+            SizedBox(height: MediaQuery.sizeOf(context).height * .18),
             Text(
-              "ต้องการเข้าโปรไฟล์\n  กรุณาเข้าสู่ระบบ",
+              "ต้องการเข้าโปรไฟล์\n    กรุณา Log in",
               style: TextStyle(
                 fontSize: 23,
                 color: Color.fromRGBO(32, 76, 75, 1),
