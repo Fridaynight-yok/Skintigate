@@ -3,9 +3,14 @@ import 'package:get/get.dart';
 import 'package:outlined_text/outlined_text.dart';
 import 'package:skintigate/util/storage.dart';
 
-class LandingPage extends StatelessWidget {
+class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
 
+  @override
+  State<LandingPage> createState() => _LandingPageState();
+}
+
+class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -116,10 +121,12 @@ class LandingPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.person, color: Colors.white),
+                        Storage().isLogin()
+                            ? Icon(Icons.person, color: Colors.white)
+                            : Icon(Icons.login, color: Colors.white),
                         SizedBox(width: 2),
                         Text(
-                          "โปรไฟล์",
+                          Storage().isLogin() ? "โปรไฟล์" : "เข้าสู่ระบบ",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 16,

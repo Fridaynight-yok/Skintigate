@@ -200,7 +200,7 @@ class _ProfileState extends State<Profile> {
               Storage().removeUserId();
 
               ///เอาออกจากระบบ
-              Get.offAllNamed('/login');
+              Get.offAllNamed('/');
             },
             child: Text(
               "ออกจากระบบ",

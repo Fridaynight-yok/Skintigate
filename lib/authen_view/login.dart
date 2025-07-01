@@ -42,7 +42,7 @@ class _LoginState extends State<Login> {
           );
       if (userInfo.user != null) {
         Storage().setUserId(userInfo.user!.uid);
-        Get.toNamed("/mainview", arguments: 3);
+        Get.offAllNamed("/mainview", arguments: 3);
       } else {
         ScaffoldMessenger.of(
           context,

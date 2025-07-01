@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
-            Get.back();
+            Get.toNamed("/");
           },
           icon: Icon(Icons.arrow_back),
         ),

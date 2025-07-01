@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Saved extends StatefulWidget {
   const Saved({super.key});
@@ -59,7 +60,9 @@ class _SavedState extends State<Saved> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            Get.back();
+          },
         ),
       ),
       body: Padding(
