@@ -46,6 +46,7 @@ dependencies:
   flutter_localization: ^0.3.3
   get_storage: ^2.1.1
   image_picker: ^1.1.2
+  google_mlkit_text_recognition: ^0.15.0
 
 flutter_launcher_icons:
   image_path: "assets/icon/app_icon.png"
