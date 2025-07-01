@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:outlined_text/outlined_text.dart';
 
 class ScanView extends StatefulWidget {
@@ -9,6 +11,26 @@ class ScanView extends StatefulWidget {
 }
 
 class _ScanViewState extends State<ScanView> {
+  File? _imageFile;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickImageFromGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+
+      // You can now process the image or show a preview
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Image selected: ${pickedFile.name}")),
+      );
+    } else {
+      print("No image selected.");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -86,7 +108,9 @@ class _ScanViewState extends State<ScanView> {
               ),
               SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  _pickImageFromGallery();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromRGBO(13, 152, 106, 1),
                 ),

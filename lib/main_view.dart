@@ -5,6 +5,7 @@ import 'package:skintigate/home_view/home.dart';
 import 'package:skintigate/profile_view/profile.dart';
 import 'package:skintigate/saved_view/saved.dart';
 import 'package:skintigate/scan_view/scan_view.dart';
+import 'package:skintigate/util/storage.dart';
 
 //ห้ามยุ่ง เสร็จแล้ว
 
@@ -17,7 +18,9 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   int index = Get.arguments;
-  List<Widget> screen = [Home(), ScanView(), Saved(), Profile()];
+  List<Widget> screen = Storage().isLogin()
+      ? [Home(), ScanView(), Saved(), Profile()]
+      : [Home(), ScanView(), Saved(), Login()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +45,15 @@ class _MainViewState extends State<MainView> {
             icon: Icon(Icons.favorite_border_outlined),
             label: "ถูกใจ",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "โปรไฟล์"),
+          Storage().isLogin()
+              ? BottomNavigationBarItem(
+                  icon: Icon(Icons.person),
+                  label: "โปรไฟล์",
+                )
+              : BottomNavigationBarItem(
+                  icon: Icon(Icons.login),
+                  label: "เข้าสู่ระบบ",
+                ),
         ],
       ),
     );

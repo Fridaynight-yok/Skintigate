@@ -71,7 +71,7 @@ class _LoginState extends State<Login> {
           children: [
             SizedBox(height: MediaQuery.sizeOf(context).height * .18),
             Text(
-              "ต้องการเข้าโปรไฟล์\n    กรุณา Log in",
+              " Log in",
               style: TextStyle(
                 fontSize: 23,
                 color: Color.fromRGBO(32, 76, 75, 1),
@@ -121,7 +121,7 @@ class _LoginState extends State<Login> {
                 width: double.infinity,
                 child: Center(
                   child: Text(
-                    "Log in",
+                    "เข้าสู่ระบบ",
                     style: TextStyle(
                       fontSize: 15,
                       color: const Color.fromARGB(255, 255, 255, 255),
