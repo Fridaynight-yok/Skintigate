@@ -6,6 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:skintigate/authen_view/login.dart';
 import 'package:skintigate/authen_view/register.dart';
+import 'package:skintigate/get_data_test.dart';
 import 'package:skintigate/home_view/home.dart';
 import 'package:skintigate/landing_view/landing_page.dart';
 import 'package:skintigate/main_view.dart';
@@ -14,6 +15,7 @@ import 'package:skintigate/profile_view/profile.dart';
 import 'package:skintigate/scan_view/scan_view.dart';
 import 'package:skintigate/skintype_view/skintype.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:skintigate/test_add.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +45,9 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      initialRoute: "/",
+      // initialRoute: "/",
+      initialRoute: "/viewproducts",
+      // initialRoute: "/testadd",
       getPages: [
         GetPage(name: "/", page: () => LandingPage()),
         GetPage(name: "/login", page: () => Login()),
@@ -54,6 +58,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/mainview", page: () => MainView()),
         GetPage(name: "/product", page: () => ProductDetail()),
         GetPage(name: "/skintype", page: () => SkinTypePage()),
+        GetPage(name: "/viewproducts", page: () => ViewProductsFutureScreen()),
+        // GetPage(name: "/testadd", page: () => AddProductScreen()),
       ],
     );
   }
