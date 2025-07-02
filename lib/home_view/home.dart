@@ -29,6 +29,11 @@ class _HomeState extends State<Home> {
         'image': data['image'] ?? '',
         'highlight': data['highlight'] ?? false,
         'ingredients': data['ingredients'] ?? '',
+        'sensitivity': data['sensitivity'] ?? '',
+        'skinmatch': data['skinmatch'] ?? '',
+        'agematch': data['agematch'] ?? '',
+        'routine': data['routine'] ?? '',
+        'orderlink': data['orderlink'] ?? '',
       };
     }).toList();
   }
@@ -72,7 +77,6 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-
             // SizedBox(height: 18),
             // Row(
             //   children: [
@@ -154,23 +158,54 @@ class _HomeState extends State<Home> {
             //     ),
             //   ],
             // ),
-            SizedBox(
-              height: 310,
-              width: double.infinity,
-              child: ListView.builder(
-                itemCount: productHighlight.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return _cardProductHighlight(productHighlight[index]);
-                },
-              ),
-            ),
-            SizedBox(height: 15),
-            Text(
-              "ดูเพิ่มเติม",
-              style: TextStyle(
-                color: Color.fromRGBO(32, 76, 62, 1),
-                fontSize: 20,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 18),
+                    Text(
+                      "สินค้าแนะนำ",
+                      style: TextStyle(
+                        color: Color.fromRGBO(32, 76, 62, 1),
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 310,
+                      width: double.infinity,
+                      child: ListView.builder(
+                        itemCount: productHighlight.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return _cardProductHighlight(
+                            productHighlight[index],
+                            width: 220,
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    Text(
+                      "สินค้าทั้งหมด",
+                      style: TextStyle(
+                        color: Color.fromRGBO(32, 76, 62, 1),
+                        fontSize: 20,
+                      ),
+                    ),
+                    GridView.count(
+                      primary: false,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+
+                      crossAxisCount: 2,
+                      childAspectRatio: 9 / 16,
+                      children: <Widget>[
+                        ...productAll.map((e) => _cardProductHighlight(e)),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -179,13 +214,13 @@ class _HomeState extends State<Home> {
     );
   }
 
-  InkWell _cardProductHighlight(Map item) {
+  InkWell _cardProductHighlight(Map item, {double width = 180}) {
     return InkWell(
       onTap: () {
-        Get.toNamed("/product");
+        Get.toNamed("/product", arguments: item);
       },
       child: Container(
-        width: 180,
+        width: width,
         margin: EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -216,17 +251,19 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "SK-II Facial Treatment Essence",
+                    item['name'],
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF204C3E),
                       fontSize: 14,
                     ),
+                    maxLines: 2,
                   ),
                   SizedBox(height: 6),
                   Text(
-                    "มี PITERA ช่วยเสริมความชุ่มชื้น, ฟื้นฟูเกราะผิว และลดการระคายเคือง",
+                    item['ingredients'],
                     style: TextStyle(fontSize: 12, color: Colors.black87),
+                    maxLines: 3,
                   ),
                   Row(
                     children: [

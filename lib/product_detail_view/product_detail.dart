@@ -10,6 +10,7 @@ class ProductDetail extends StatefulWidget {
 }
 
 class _ProductDetailState extends State<ProductDetail> {
+  Map item = Get.arguments;
   bool isFavorite = false;
 
   void _launchURL() async {
@@ -21,6 +22,7 @@ class _ProductDetailState extends State<ProductDetail> {
 
   @override
   Widget build(BuildContext context) {
+    print(item);
     return Scaffold(
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
@@ -50,9 +52,8 @@ class _ProductDetailState extends State<ProductDetail> {
           physics: ClampingScrollPhysics(),
           child: Column(
             children: [
-              const SizedBox(height: 60),
               Image.network(
-                'https://img.kingpowerclick.com/cdn-cgi/image/format=auto/kingpower-com/image/upload/w_640,h_640/v1677124261/prod/232275-l1.jpg', // make sure this path is correct
+                item["image"], // make sure this path is correct
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
@@ -68,8 +69,8 @@ class _ProductDetailState extends State<ProductDetail> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "SK-II Facial Treatment Essense",
+                    Text(
+                      item["name"],
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -77,7 +78,28 @@ class _ProductDetailState extends State<ProductDetail> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text.rich(
+                    Text.rich(
+                      TextSpan(
+                        text: "แบรนด์: ",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                          color: Color(0xFF204C3E),
+                        ),
+                        children: [
+                          TextSpan(
+                            text: item['brand'],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 237, 106, 97),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    Text.rich(
                       TextSpan(
                         text: "ผิวที่แนะนำ: ",
                         style: TextStyle(
@@ -87,7 +109,9 @@ class _ProductDetailState extends State<ProductDetail> {
                         ),
                         children: [
                           TextSpan(
-                            text: "ผิวที่แนะนำ: ผิวแห้ง, ผิวหมองคล้ำ, ผิวมัน",
+                            text:
+                                item["skinmatch"] ??
+                                "ผิวแห้ง, ผิวหมองคล้ำ, ผิวมัน",
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.normal,
@@ -97,7 +121,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         ],
                       ),
                     ),
-                    const Text.rich(
+                    Text.rich(
                       TextSpan(
                         text: "อายุที่แนะนำ: ",
                         style: TextStyle(
@@ -108,6 +132,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         children: [
                           TextSpan(
                             text:
+                                item["agematch"] ??
                                 "เหมาะกับอายุ 20 ปีขึ้นไปโดยเฉพาะช่วง 25-40 ปี ที่เริ่มมีปัญหาผิวจากความเครียด อายุ และแสงแดด เพราะ Galactomyces จะช่วยเรื่องผิวหมอง รอยแดง และผิวขาดน้ำ",
                             style: TextStyle(
                               fontWeight: FontWeight.normal,
@@ -124,13 +149,14 @@ class _ProductDetailState extends State<ProductDetail> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Icon(Icons.warning, size: 16, color: Colors.orange),
                         SizedBox(width: 4),
                         Flexible(
                           child: Text(
-                            " มีส่วนผสมที่ให้ความชุ่มชื้นและช่วยฟื้นฟู  แต่มี Methylparaben, Sorbic Acid และ Sodium Benzoate ซึ่งอาจก่อให้เกิดการระคายเคืองกับคนที่ผิวแพ้ง่ายมาก",
+                            item["sensitivity"] ??
+                                " มีส่วนผสมที่ให้ความชุ่มชื้นและช่วยฟื้นฟู  แต่มี Methylparaben, Sorbic Acid และ Sodium Benzoate ซึ่งอาจก่อให้เกิดการระคายเคืองกับคนที่ผิวแพ้ง่ายมาก",
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.black87,
@@ -140,14 +166,9 @@ class _ProductDetailState extends State<ProductDetail> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      "ขั้นตอนในสกินแคร์รูทีน: ใช้ในขั้นตอน Essence / หลังโทนเนอร์",
-                      style: TextStyle(fontSize: 13, color: Colors.black87),
-                    ),
-                    const SizedBox(height: 10),
-                    const Text.rich(
+                    Text.rich(
                       TextSpan(
-                        text: "Key Ingredients: ",
+                        text: "ขั้นตอนในสกินแคร์รูทีน: ",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 13,
@@ -156,7 +177,8 @@ class _ProductDetailState extends State<ProductDetail> {
                         children: [
                           TextSpan(
                             text:
-                                "Galactomyces Ferment Filtrate (กว่า 90%) ช่วยให้ผิวกระจ่างใส สมดุลน้ำมัน ลดความหมองคล้ำ เพิ่มความเรียบเนียน และฟื้นฟูผิวจากความเครียดและมลภาวะ",
+                                item["routine"] ??
+                                "เหมาะกับอายุ 20 ปีขึ้นไปโดยเฉพาะช่วง 25-40 ปี ที่เริ่มมีปัญหาผิวจากความเครียด อายุ และแสงแดด เพราะ Galactomyces จะช่วยเรื่องผิวหมอง รอยแดง และผิวขาดน้ำ",
                             style: TextStyle(
                               fontWeight: FontWeight.normal,
                               color: Colors.black87,
@@ -166,9 +188,9 @@ class _ProductDetailState extends State<ProductDetail> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text.rich(
+                    Text.rich(
                       TextSpan(
-                        text: "ราคา: ",
+                        text: "Key Ingredients: ",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 13,
@@ -176,19 +198,20 @@ class _ProductDetailState extends State<ProductDetail> {
                         ),
                         children: [
                           TextSpan(
-                            text: "฿฿฿฿",
+                            text: item["ingredients"],
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 237, 106, 97),
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black87,
                             ),
                           ),
                         ],
                       ),
                     ),
+
                     const SizedBox(height: 4),
                     InkWell(
                       onTap: _launchURL,
-                      child: const Text.rich(
+                      child: Text.rich(
                         TextSpan(
                           text: "กดลิงค์เพื่อซื้อ: ",
                           style: TextStyle(
@@ -198,7 +221,9 @@ class _ProductDetailState extends State<ProductDetail> {
                           ),
                           children: [
                             TextSpan(
-                              text: "https://s.shopee.co.th/2B3DdE9YOo",
+                              text:
+                                  item["orderlink "] ??
+                                  "https://s.shopee.co.th/2B3DdE9YOo",
                               style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.blueAccent,
