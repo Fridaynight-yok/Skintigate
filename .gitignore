@@ -46,3 +46,5 @@ app.*.map.json
 
 #google-service
 /android/app/google-services.json
+
+/root/skintigate_api.env

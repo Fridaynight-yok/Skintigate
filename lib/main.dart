@@ -15,7 +15,7 @@ import 'package:skintigate/profile_view/profile.dart';
 import 'package:skintigate/scan_view/scan_view.dart';
 import 'package:skintigate/skintype_view/skintype.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:skintigate/test_add.dart';
+// import 'package:skintigate/test_add.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
