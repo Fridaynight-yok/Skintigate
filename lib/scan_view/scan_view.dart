@@ -301,7 +301,10 @@ class _ScanViewState extends State<ScanView> {
 
                     SizedBox(height: 30),
                     ElevatedButton(
-                      onPressed: () => _showActionSheet(context),
+                      onPressed: () {
+                        FocusScope.of(context).unfocus(); //แก้เพิ่ม
+                        _showActionSheet(context);
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(13, 152, 106, 1),
                       ),
