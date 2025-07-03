@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart' as dioTest;
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -21,17 +22,24 @@ class UploadImg {
     if (imageFile == null) {
       return 'no image found';
     }
-    final cloudUrl =
-        "https://api.cloudinary.com/v1_1/dtflazdw8/image/upload"; //find link on google, search "cloudinary uplaod url" -> guide ->basic upload
-    final imageData = MultipartFile(
-      imageFile,
-      filename: imagePath.split("/").last,
-    );
-    Response res = await sendApi.post(
-      cloudUrl,
-      FormData({"upload_preset": "Skintigate", "file": imageData}),
+
+    var data = dioTest.FormData.fromMap({
+      'file': [
+        await dioTest.MultipartFile.fromFile(
+          imagePath,
+          filename: imagePath.split('/').last,
+        ),
+      ],
+      'upload_preset': 'Skintigate',
+    });
+
+    var dio = dioTest.Dio();
+    var response = await dio.request(
+      'https://api.cloudinary.com/v1_1/dtflazdw8/image/upload',
+      options: dioTest.Options(method: 'POST'),
+      data: data,
     );
 
-    return res.body["secure_url"] ?? "error";
+    return response.data["secure_url"] ?? "error";
   }
 }

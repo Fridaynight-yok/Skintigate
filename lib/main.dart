@@ -45,8 +45,8 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      // initialRoute: "/",
-      initialRoute: "/home",
+      initialRoute: "/",
+      // initialRoute: "/home",
       // initialRoute: "/testadd",
       getPages: [
         GetPage(name: "/", page: () => LandingPage()),

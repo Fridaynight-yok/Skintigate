@@ -98,19 +98,23 @@ class _TextScannerState extends State<TextScanner> {
       "generationConfig": {"response_mime_type": "application/json"},
     });
     var dio = Dio();
-    var response = await dio.request(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
-      options: Options(method: 'POST', headers: headers),
-      data: data,
-    );
 
-    if (response.statusCode == 200) {
-      final data = response.data;
-      String text = data['candidates'][0]['content']['parts'][0]['text'];
-      final decoded = jsonDecode(text);
-      print(decoded[0]);
-      return decoded[0];
-    } else {
+    try {
+      var response = await dio.request(
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
+        options: Options(method: 'POST', headers: headers),
+        data: data,
+      );
+
+      if (response.statusCode == 200) {
+        final data = response.data;
+        String text = data['candidates'][0]['content']['parts'][0]['text'];
+        final decoded = jsonDecode(text);
+        return decoded[0];
+      } else {
+        return {};
+      }
+    } catch (_) {
       return {};
     }
   }
