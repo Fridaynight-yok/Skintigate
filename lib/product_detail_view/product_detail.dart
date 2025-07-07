@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:skintigate/util/storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProductDetail extends StatefulWidget {
@@ -19,6 +21,29 @@ class _ProductDetailState extends State<ProductDetail> {
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $url');
     }
+  }
+
+  void checkIfFavorited() async {
+    final userId = await Storage().getUserId();
+
+    final existing = await FirebaseFirestore.instance
+        .collection('favorites')
+        .where('name', isEqualTo: item['name']) // or use a unique ID
+        .where('users', isEqualTo: userId)
+        .get();
+
+    if (existing.docs.isNotEmpty) {
+      setState(() {
+        isFavorite = true;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkIfFavorited();
   }
 
   @override
@@ -40,10 +65,42 @@ class _ProductDetailState extends State<ProductDetail> {
               isFavorite ? Icons.favorite : Icons.favorite_border,
               color: const Color.fromARGB(255, 234, 114, 106),
             ),
-            onPressed: () {
+            onPressed: () async {
               setState(() {
                 isFavorite = !isFavorite;
               });
+              if (isFavorite) {
+                try {
+                  final userId = await Storage().getUserId();
+
+                  final existing = await FirebaseFirestore.instance
+                      .collection('favorites')
+                      .where(
+                        'name',
+                        isEqualTo: item['name'],
+                      ) // You can also use 'id' if available
+                      .where('users', isEqualTo: userId)
+                      .get();
+
+                  if (existing.docs.isEmpty) {
+                    // 2. If it doesn't exist, add it
+                    await FirebaseFirestore.instance
+                        .collection('favorites')
+                        .add({
+                          ...item,
+                          'users': userId,
+                          'createdAt': FieldValue.serverTimestamp(),
+                        });
+                    print("Added to favorites!");
+                  } else {
+                    print("Item already in favorites.");
+                  }
+                } catch (e) {
+                  print("Failed to add to favorites: $e");
+                }
+              } else {
+                // Optional: remove from favorites if un-favorited
+              }
             },
           ),
         ],
