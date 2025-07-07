@@ -43,7 +43,7 @@ class _ScanViewState extends State<ScanView> {
                   5. What Age is recommended to use this skincare {agematch}
                   6. Is it recommended for sensitive skin {sensitivity}
                   7. Skincare routine step {routine}
-                  8. can I get a shopee link for this product {order}
+                  8. can I get a shopee link for this product {orderlink}
                   9.can I get a rating score based on shopee {rating}
                   After knowing the name of the skincare product, please
                   include the name of that skincare product at the shopee link as the sample

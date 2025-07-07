@@ -16,8 +16,8 @@ class _ProductDetailState extends State<ProductDetail> {
   Map item = Get.arguments;
   bool isFavorite = false;
 
-  void _launchURL() async {
-    final Uri url = Uri.parse("https://s.shopee.co.th/2B3DdE9YOo");
+  void _launchURL(String urlString) async {
+    final Uri url = Uri.parse(urlString);
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $url');
     }
@@ -269,7 +269,10 @@ class _ProductDetailState extends State<ProductDetail> {
 
                     const SizedBox(height: 4),
                     InkWell(
-                      onTap: _launchURL,
+                      onTap: () => _launchURL(
+                        item["orderlink"] ??
+                            "https://s.shopee.co.th/2B3DdE9YOo",
+                      ),
                       child: Text.rich(
                         TextSpan(
                           text: "กดลิงค์เพื่อซื้อ: ",
@@ -281,7 +284,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           children: [
                             TextSpan(
                               text:
-                                  item["orderlink "] ??
+                                  item["orderlink"] ??
                                   "https://s.shopee.co.th/2B3DdE9YOo",
                               style: TextStyle(
                                 fontWeight: FontWeight.normal,
