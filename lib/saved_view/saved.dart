@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:skintigate/util/storage.dart';
 
 class Saved extends StatefulWidget {
   const Saved({super.key});
@@ -10,43 +12,20 @@ class Saved extends StatefulWidget {
 }
 
 class _SavedState extends State<Saved> {
-  final List<Map<String, dynamic>> products = [
-    {
-      'name': 'Biore UV Aqua Rich Watery Essense',
-      'size': '30 ml',
-      'claim': 'ป้องกันแสงแดดด้วย',
-      'newPrice': '฿',
-      'rating': 4.6,
-      'image':
-          'https://www.konvy.com/static/team/2024/0503/17147356019660_600x600.jpg',
-    },
-    {
-      'name': 'N°1 De Chanel Revitalizing Eye Serum',
-      'size': '80 ml',
-      'claim': 'เซรั่มบำรุงรอบดวงตา',
-      'newPrice': '฿฿฿',
-      'rating': 4.6,
-      'image':
-          'https://www.chanel.com/images/t_one/w_0.40,h_0.40,c_crop/q_auto:good,f_autoplus,fl_lossy,dpr_1.1/w_1020/n-1-de-chanel-revitalizing-eye-serum-smooths-restores-refreshes-0-53fl-oz--packshot-default-140040-9540966580254.jpg',
-    },
-    {
-      'name': 'Cure Natural Aqua Gel',
-      'size': '120 ml',
-      'claim': 'เจลผลัดเซลล์ผิวอย่างอ่อนโยน',
-      'newPrice': '฿',
-      'rating': 4.6,
-      'image':
-          'https://mochimochi.nz/cdn/shop/files/curenaturalaquagel.webp?v=1685667687',
-    },
-    {
-      'name': 'UV Sun Serum SPF50+ Pa++++',
-      'size': '250 ml',
-      'claim': 'กันแดดเนื้อเซรั่มซึมเร็วไม่เหนียวเหนอะ',
-      'newPrice': '฿',
-      'rating': 4.6,
-      'image': 'https://clearnose.co.th/wp-content/uploads/2022/01/CUV_1.png',
-    },
-  ];
+  String? userId;
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserId();
+  }
+
+  void loadUserId() async {
+    final id = await Storage().getUserId();
+    setState(() {
+      userId = id;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,75 +45,118 @@ class _SavedState extends State<Saved> {
           },
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: GridView.builder(
-          itemCount: products.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            childAspectRatio: 0.7,
-          ),
-          itemBuilder: (context, index) {
-            final item = products[index];
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 120,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 249, 249, 249),
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(0, 2),
-                      ),
-                    ],
+      body: userId == null
+          ? const Center(child: CircularProgressIndicator())
+          : StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('favorites')
+                  .where('users', isEqualTo: userId)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                  return const Center(child: Text("ยังไม่มีสินค้าที่ถูกใจ 🥺"));
+                }
+
+                final products = snapshot.data!.docs
+                    .map((doc) => doc.data() as Map<String, dynamic>)
+                    .toList();
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
                   ),
-                  child: Center(
-                    child: CachedNetworkImage(
-                      imageUrl: item['image'],
-                      fit: BoxFit.cover,
-                    ),
+                  child: GridView.builder(
+                    itemCount: products.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                          childAspectRatio: 0.7,
+                        ),
+                    itemBuilder: (context, index) {
+                      final item = products[index];
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 120,
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 249, 249, 249),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Center(
+                              child: CachedNetworkImage(
+                                imageUrl: item['image'] ?? '',
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            item['name'] ?? '',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromRGBO(32, 76, 75, 1),
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Text(
+                            item['size'] ?? '',
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            item['claim'] ?? "N/A",
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Row(
+                            children: [
+                              Text(
+                                item['rating']?.toString() ?? '0.0',
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                                size: 14,
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
                   ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  item['name'],
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromRGBO(32, 76, 75, 1),
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  item['size'],
-                  style: const TextStyle(fontSize: 13, color: Colors.grey),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  item['claim'] ?? "N/A",
-                  style: const TextStyle(fontSize: 10, color: Colors.black),
-                ),
-                const SizedBox(height: 2),
-                Row(
-                  children: [
-                    Text(
-                      item['rating'].toString(),
-                      style: const TextStyle(fontSize: 13, color: Colors.grey),
-                    ),
-                    const SizedBox(width: 4),
-                    const Icon(Icons.star, color: Colors.amber, size: 14),
-                  ],
-                ),
-              ],
-            );
-          },
-        ),
-      ),
+                );
+              },
+            ),
     );
   }
 }
