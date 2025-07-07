@@ -249,7 +249,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     const SizedBox(height: 10),
                     Text.rich(
                       TextSpan(
-                        text: "Ingredients: ",
+                        text: "ส่วนผสม: ",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 13,
@@ -266,7 +266,6 @@ class _ProductDetailState extends State<ProductDetail> {
                         ],
                       ),
                     ),
-
                     const SizedBox(height: 4),
                     InkWell(
                       onTap: () => _launchURL(
@@ -295,6 +294,25 @@ class _ProductDetailState extends State<ProductDetail> {
                         ),
                       ),
                     ),
+                    // Text.rich(
+                    //   TextSpan(
+                    //     text: "คะแนนความชอบ: ",
+                    //     style: TextStyle(
+                    //       fontWeight: FontWeight.bold,
+                    //       fontSize: 13,
+                    //       color: Color(0xFF204C3E),
+                    //     ),
+                    //     children: [
+                    //       TextSpan(
+                    //         text: item["rating"],
+                    //         style: TextStyle(
+                    //           fontWeight: FontWeight.normal,
+                    //           color: Colors.black87,
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
