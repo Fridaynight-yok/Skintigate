@@ -100,8 +100,10 @@ class _ScanViewState extends State<ScanView> {
       if (data.isEmpty) {
         _showAlertDialog(context);
       } else {
+        _showLoading();
         String url = await UploadImg().uploadImage(pickedFile.path);
         data['image'] = url;
+        _cancelLoading();
         Get.toNamed("/product", arguments: data);
       }
     } else {

@@ -46,7 +46,7 @@ class _SavedState extends State<Saved> {
         ),
       ),
       body: userId == null
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: Text('กรุณา Log in!'))
           : StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('favorites')
@@ -81,76 +81,78 @@ class _SavedState extends State<Saved> {
                         ),
                     itemBuilder: (context, index) {
                       final item = products[index];
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 120,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 249, 249, 249),
-                              borderRadius: BorderRadius.circular(16),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 4,
-                                  offset: Offset(0, 2),
+                      return GestureDetector(
+                        onTap: () {
+                          Get.toNamed("/product", arguments: item);
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 120,
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 249, 249, 249),
+                                borderRadius: BorderRadius.circular(16),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 4,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: CachedNetworkImage(
+                                  imageUrl: item['image'] ?? '',
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              item['name'] ?? '',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromRGBO(32, 76, 75, 1),
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              item['skinmatch'] ?? '',
+                              style: const TextStyle(
+                                fontSize: 13,
+                                color: Colors.grey,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: 2),
+                            Row(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    item['rating']?.toString() ?? '0.0',
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.grey,
+                                    ),
+                                    maxLines: 1,
+                                  ),
+                                ),
+                                const SizedBox(width: 4),
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                  size: 14,
                                 ),
                               ],
                             ),
-                            child: Center(
-                              child: CachedNetworkImage(
-                                imageUrl: item['image'] ?? '',
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            item['name'] ?? '',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Color.fromRGBO(32, 76, 75, 1),
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Text(
-                            item['size'] ?? '',
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            item['claim'] ?? "N/A",
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: Colors.black,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Row(
-                            children: [
-                              Text(
-                                item['rating']?.toString() ?? '0.0',
-                                style: const TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              const Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                                size: 14,
-                              ),
-                            ],
-                          ),
-                        ],
+                          ],
+                        ),
                       );
                     },
                   ),

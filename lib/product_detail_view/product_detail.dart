@@ -24,7 +24,7 @@ class _ProductDetailState extends State<ProductDetail> {
   }
 
   void checkIfFavorited() async {
-    final userId = await Storage().getUserId();
+    final userId = Storage().getUserId();
 
     final existing = await FirebaseFirestore.instance
         .collection('favorites')
@@ -60,49 +60,50 @@ class _ProductDetailState extends State<ProductDetail> {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
         ),
         actions: [
-          IconButton(
-            icon: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: const Color.fromARGB(255, 234, 114, 106),
-            ),
-            onPressed: () async {
-              setState(() {
-                isFavorite = !isFavorite;
-              });
-              if (isFavorite) {
-                try {
-                  final userId = await Storage().getUserId();
+          if (Storage().getUserId() != null)
+            IconButton(
+              icon: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: const Color.fromARGB(255, 234, 114, 106),
+              ),
+              onPressed: () async {
+                setState(() {
+                  isFavorite = !isFavorite;
+                });
+                if (isFavorite) {
+                  try {
+                    final userId = await Storage().getUserId();
 
-                  final existing = await FirebaseFirestore.instance
-                      .collection('favorites')
-                      .where(
-                        'name',
-                        isEqualTo: item['name'],
-                      ) // You can also use 'id' if available
-                      .where('users', isEqualTo: userId)
-                      .get();
-
-                  if (existing.docs.isEmpty) {
-                    // 2. If it doesn't exist, add it
-                    await FirebaseFirestore.instance
+                    final existing = await FirebaseFirestore.instance
                         .collection('favorites')
-                        .add({
-                          ...item,
-                          'users': userId,
-                          'createdAt': FieldValue.serverTimestamp(),
-                        });
-                    print("Added to favorites!");
-                  } else {
-                    print("Item already in favorites.");
+                        .where(
+                          'name',
+                          isEqualTo: item['name'],
+                        ) // You can also use 'id' if available
+                        .where('users', isEqualTo: userId)
+                        .get();
+
+                    if (existing.docs.isEmpty) {
+                      // 2. If it doesn't exist, add it
+                      await FirebaseFirestore.instance
+                          .collection('favorites')
+                          .add({
+                            ...item,
+                            'users': userId,
+                            'createdAt': FieldValue.serverTimestamp(),
+                          });
+                      print("Added to favorites!");
+                    } else {
+                      print("Item already in favorites.");
+                    }
+                  } catch (e) {
+                    print("Failed to add to favorites: $e");
                   }
-                } catch (e) {
-                  print("Failed to add to favorites: $e");
+                } else {
+                  // Optional: remove from favorites if un-favorited
                 }
-              } else {
-                // Optional: remove from favorites if un-favorited
-              }
-            },
-          ),
+              },
+            ),
         ],
       ),
       body: SafeArea(
