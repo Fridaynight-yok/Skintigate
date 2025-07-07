@@ -46,7 +46,17 @@ class _SavedState extends State<Saved> {
         ),
       ),
       body: userId == null
-          ? const Center(child: Text('กรุณา Log in!'))
+          ? Center(
+              child: GestureDetector(
+                onTap: () {
+                  Get.toNamed('/login');
+                },
+                child: Text(
+                  'กรุณาเข้าสู่ระบบ เพื่อดูสินค้าที่บันทึกไว้',
+                  style: TextStyle(decoration: TextDecoration.underline),
+                ),
+              ),
+            )
           : StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('favorites')

@@ -11,7 +11,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Map<String, dynamic>> productAll = [];
+  TextEditingController searchController =
+      TextEditingController(); //variable for search input
+  List<Map<String, dynamic>> filteredProducts =
+      []; //variable for filtering products for search bar
+
+  List<Map<String, dynamic>> productAll =
+      []; //variable for fetching all products
   List<Map<String, dynamic>> productHighlight = [];
 
   //เข้าถึงข้อมูล product_data ใน firebase
@@ -39,10 +45,17 @@ class _HomeState extends State<Home> {
     }).toList();
   }
 
+  // Future<void> getProductAll() async {
+  //   productAll = await fetchProducts();
+  //   productHighlight = productAll.where((e) => e['highlight']).toList();
+  //   print(productHighlight.length);
+  // //   setState(() {});
+  // }
+
   Future<void> getProductAll() async {
     productAll = await fetchProducts();
     productHighlight = productAll.where((e) => e['highlight']).toList();
-    print(productHighlight.length);
+    filteredProducts = List.from(productAll); // initially show all
     setState(() {});
   }
 
@@ -70,6 +83,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
+              controller: searchController,
               decoration: InputDecoration(
                 hintText: "ค้นหาสินค้า",
                 prefixIcon: Icon(Icons.search),
@@ -77,6 +91,24 @@ class _HomeState extends State<Home> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
+              onChanged: (value) {
+                final query = value.toLowerCase();
+                setState(() {
+                  filteredProducts = productAll.where((product) {
+                    final name = product['name']
+                        .toString()
+                        .toLowerCase()
+                        .trim();
+
+                    final brand = product['brand']
+                        .toString()
+                        .toLowerCase()
+                        .trim();
+
+                    return name.contains(query) || brand.contains(query);
+                  }).toList();
+                });
+              },
             ),
             // SizedBox(height: 18),
             // Row(
@@ -164,36 +196,38 @@ class _HomeState extends State<Home> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 18),
-                    Text(
-                      "สินค้าแนะนำ",
-                      style: TextStyle(
-                        color: Color.fromRGBO(32, 76, 62, 1),
-                        fontSize: 20,
+                    if (searchController.text.isEmpty) ...[
+                      SizedBox(height: 18),
+                      Text(
+                        "สินค้าแนะนำ",
+                        style: TextStyle(
+                          color: Color.fromRGBO(32, 76, 62, 1),
+                          fontSize: 20,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 310,
-                      width: double.infinity,
-                      child: ListView.builder(
-                        itemCount: productHighlight.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return _cardProductHighlight(
-                            productHighlight[index],
-                            width: 220,
-                          );
-                        },
+                      SizedBox(
+                        height: 310,
+                        width: double.infinity,
+                        child: ListView.builder(
+                          itemCount: productHighlight.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return _cardProductHighlight(
+                              productHighlight[index],
+                              width: 220,
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    Text(
-                      "สินค้าทั้งหมด",
-                      style: TextStyle(
-                        color: Color.fromRGBO(32, 76, 62, 1),
-                        fontSize: 20,
+                      SizedBox(height: 15),
+                      Text(
+                        "สินค้าทั้งหมด",
+                        style: TextStyle(
+                          color: Color.fromRGBO(32, 76, 62, 1),
+                          fontSize: 20,
+                        ),
                       ),
-                    ),
+                    ],
                     GridView.count(
                       primary: false,
                       shrinkWrap: true,
@@ -202,7 +236,9 @@ class _HomeState extends State<Home> {
                       crossAxisCount: 2,
                       childAspectRatio: 9 / 16,
                       children: <Widget>[
-                        ...productAll.map((e) => _cardProductHighlight(e)),
+                        ...filteredProducts.map(
+                          (e) => _cardProductHighlight(e),
+                        ), //update to ...filteredProducts.map
                       ],
                     ),
                   ],
