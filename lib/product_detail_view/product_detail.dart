@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -52,8 +53,8 @@ class _ProductDetailState extends State<ProductDetail> {
           physics: ClampingScrollPhysics(),
           child: Column(
             children: [
-              Image.network(
-                item["image"], // make sure this path is correct
+              CachedNetworkImage(
+                imageUrl: item["image"], // make sure this path is correct
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
@@ -190,7 +191,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     const SizedBox(height: 10),
                     Text.rich(
                       TextSpan(
-                        text: "Key Ingredients: ",
+                        text: "Ingredients: ",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 13,

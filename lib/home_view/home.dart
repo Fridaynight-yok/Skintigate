@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -238,8 +239,8 @@ class _HomeState extends State<Home> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-              child: Image.network(
-                item['image'],
+              child: CachedNetworkImage(
+                imageUrl: item['image'],
                 height: 150,
                 width: double.infinity,
                 fit: BoxFit.cover,

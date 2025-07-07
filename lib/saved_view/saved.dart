@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -94,7 +95,10 @@ class _SavedState extends State<Saved> {
                     ],
                   ),
                   child: Center(
-                    child: Image.network(item['image'], fit: BoxFit.cover),
+                    child: CachedNetworkImage(
+                      imageUrl: item['image'],
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 6),
