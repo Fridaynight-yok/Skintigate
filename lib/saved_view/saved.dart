@@ -51,9 +51,32 @@ class _SavedState extends State<Saved> {
                 onTap: () {
                   Get.toNamed('/login');
                 },
-                child: Text(
-                  'กรุณาเข้าสู่ระบบ เพื่อดูสินค้าที่บันทึกไว้',
-                  style: TextStyle(decoration: TextDecoration.underline),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'กรุณาเข้าสู่ระบบ เพื่อดูสินค้าที่บันทึกไว้',
+                      style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.toNamed("/login");
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(13, 152, 106, 1),
+                      ),
+                      child: SizedBox(
+                        width: 60,
+                        height: 40,
+                        child: Center(
+                          child: Text(
+                            "เข้าสู่ระบบ",
+                            style: TextStyle(color: Colors.white, fontSize: 13),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             )

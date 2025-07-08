@@ -37,7 +37,7 @@ class _LandingPageState extends State<LandingPage> {
                     ),
                   ),
                   strokes: [
-                    OutlinedTextStroke(color: Colors.white, width: 2.4),
+                    OutlinedTextStroke(color: Colors.white, width: 2.7),
                   ],
                 ),
 

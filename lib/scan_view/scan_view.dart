@@ -185,6 +185,10 @@ class _ScanViewState extends State<ScanView> {
           width: double.infinity,
           height: MediaQuery.sizeOf(context).height,
         ),
+        Container(
+          height: double.infinity,
+          color: const Color.fromARGB(40, 114, 114, 114),
+        ),
         GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
