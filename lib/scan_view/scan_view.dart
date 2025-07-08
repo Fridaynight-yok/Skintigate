@@ -187,7 +187,7 @@ class _ScanViewState extends State<ScanView> {
         ),
         Container(
           height: double.infinity,
-          color: const Color.fromARGB(40, 114, 114, 114),
+          color: Color.fromARGB(111, 161, 160, 160),
         ),
         GestureDetector(
           onTap: () {

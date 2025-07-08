@@ -20,19 +20,22 @@ class _LandingPageState extends State<LandingPage> {
           fit: BoxFit.cover,
           height: MediaQuery.sizeOf(context).height,
         ),
+        Container(height: double.infinity, color: Color(0x50000000)),
         Scaffold(
           appBar: AppBar(backgroundColor: Colors.transparent),
           backgroundColor: Colors.transparent,
           body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
+                SizedBox(height: 120),
                 OutlinedText(
                   text: Text(
-                    "One click to unlock\nyour perfect skin\nmatch",
+                    "One click to unlock\nyour perfect skin match",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 24,
+                      fontWeight: FontWeight.bold,
                       color: Color.fromRGBO(32, 76, 62, 1),
                     ),
                   ),
@@ -41,7 +44,7 @@ class _LandingPageState extends State<LandingPage> {
                   ],
                 ),
 
-                SizedBox(height: 100),
+                SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () {
                     Get.toNamed("/mainview", arguments: 0);
@@ -63,7 +66,7 @@ class _LandingPageState extends State<LandingPage> {
                           "ค้นหาสินค้า",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 18,
                             color: Color.fromRGBO(35, 96, 77, 1),
                           ),
                         ),
@@ -77,7 +80,7 @@ class _LandingPageState extends State<LandingPage> {
                     Get.toNamed("/mainview", arguments: 1);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(152, 215, 194, 0.6),
+                    backgroundColor: Color.fromRGBO(152, 215, 194, 0.863),
                     side: BorderSide(color: Color.fromRGBO(10, 107, 75, 0.698)),
                     elevation: 10,
                   ),
@@ -93,8 +96,8 @@ class _LandingPageState extends State<LandingPage> {
                           "สแกนส่วนผสม",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 16,
-                            color: Color.fromRGBO(35, 96, 77, 1),
+                            fontSize: 18,
+                            color: Color.fromRGBO(31, 85, 68, 1),
                           ),
                         ),
                       ],
@@ -112,7 +115,7 @@ class _LandingPageState extends State<LandingPage> {
                   },
 
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(13, 152, 106, 1),
+                    backgroundColor: Color.fromRGBO(12, 129, 90, 1),
                     elevation: 20,
                   ),
                   child: SizedBox(
@@ -129,7 +132,7 @@ class _LandingPageState extends State<LandingPage> {
                           Storage().isLogin() ? "โปรไฟล์" : "เข้าสู่ระบบ",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 18,
                             color: Color.fromRGBO(253, 254, 254, 1),
                           ),
                         ),

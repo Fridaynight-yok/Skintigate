@@ -67,187 +67,197 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Get.toNamed("/");
-          },
-          icon: Icon(Icons.arrow_back),
+    return Stack(
+      children: [
+        Image.asset(
+          "assets/image/home_page_.png",
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: MediaQuery.sizeOf(context).height,
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextField(
-              controller: searchController,
-              decoration: InputDecoration(
-                hintText: "ค้นหาสินค้า",
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              onChanged: (value) {
-                final query = value.toLowerCase();
-                setState(() {
-                  filteredProducts = productAll.where((product) {
-                    final name = product['name']
-                        .toString()
-                        .toLowerCase()
-                        .trim();
-
-                    final brand = product['brand']
-                        .toString()
-                        .toLowerCase()
-                        .trim();
-
-                    return name.contains(query) || brand.contains(query);
-                  }).toList();
-                });
+        Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              onPressed: () {
+                Get.toNamed("/");
               },
+              icon: Icon(Icons.arrow_back),
             ),
-            // SizedBox(height: 18),
-            // Row(
-            //   children: [
-            //     Text(
-            //       "ค้นหาตามหมวดหมู่",
-            //       style: TextStyle(
-            //         color: Color.fromRGBO(32, 76, 62, 1),
-            //         fontSize: 20,
-            //       ),
-            //     ),
-            //     Spacer(),
-            //     InkWell(
-            //       onTap: () {
-            //         Get.toNamed('/skintype');
-            //       },
-            //       child: Text(
-            //         "ดูทั้งหมด",
-            //         style: TextStyle(
-            //           color: Color.fromRGBO(32, 76, 62, 1),
-            //           decoration: TextDecoration.underline,
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: [
-            //     ActionChip(
-            //       label: SizedBox(
-            //         width: 50,
-            //         child: Center(
-            //           child: Text(
-            //             "สิว",
-            //             style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
-            //           ),
-            //         ),
-            //       ),
-            //       backgroundColor: Colors.white,
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadiusGeometry.circular(20),
-            //         side: BorderSide(color: Color.fromRGBO(32, 76, 62, 1)),
-            //       ),
-            //       onPressed: () {},
-            //     ),
-            //     ActionChip(
-            //       label: SizedBox(
-            //         width: 50,
-            //         child: Center(
-            //           child: Text(
-            //             "ผิวแห้ง",
-            //             style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
-            //           ),
-            //         ),
-            //       ),
-            //       backgroundColor: Colors.white,
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadiusGeometry.circular(20),
-            //         side: BorderSide(color: Color.fromRGBO(32, 76, 62, 1)),
-            //       ),
-            //       onPressed: () {},
-            //     ),
-            //     ActionChip(
-            //       label: SizedBox(
-            //         width: 50,
-            //         child: Center(
-            //           child: Text(
-            //             "ผิวมีอายุ",
-            //             style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
-            //           ),
-            //         ),
-            //       ),
-            //       backgroundColor: Colors.white,
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadiusGeometry.circular(20),
-            //         side: BorderSide(color: Color.fromRGBO(32, 76, 62, 1)),
-            //       ),
-            //       onPressed: () {},
-            //     ),
-            //   ],
-            // ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (searchController.text.isEmpty) ...[
-                      SizedBox(height: 18),
-                      Text(
-                        "สินค้าแนะนำ",
-                        style: TextStyle(
-                          color: Color.fromRGBO(32, 76, 62, 1),
-                          fontSize: 20,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 310,
-                        width: double.infinity,
-                        child: ListView.builder(
-                          itemCount: productHighlight.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return _cardProductHighlight(
-                              productHighlight[index],
-                              width: 220,
-                            );
-                          },
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      Text(
-                        "สินค้าทั้งหมด",
-                        style: TextStyle(
-                          color: Color.fromRGBO(32, 76, 62, 1),
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                    GridView.count(
-                      primary: false,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(
+                  controller: searchController,
+                  decoration: InputDecoration(
+                    hintText: "ค้นหาสินค้า",
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    final query = value.toLowerCase();
+                    setState(() {
+                      filteredProducts = productAll.where((product) {
+                        final name = product['name']
+                            .toString()
+                            .toLowerCase()
+                            .trim();
 
-                      crossAxisCount: 2,
-                      childAspectRatio: 9 / 16,
-                      children: <Widget>[
-                        ...filteredProducts.map(
-                          (e) => _cardProductHighlight(e),
-                        ), //update to ...filteredProducts.map
+                        final brand = product['brand']
+                            .toString()
+                            .toLowerCase()
+                            .trim();
+
+                        return name.contains(query) || brand.contains(query);
+                      }).toList();
+                    });
+                  },
+                ),
+                // SizedBox(height: 18),
+                // Row(
+                //   children: [
+                //     Text(
+                //       "ค้นหาตามหมวดหมู่",
+                //       style: TextStyle(
+                //         color: Color.fromRGBO(32, 76, 62, 1),
+                //         fontSize: 20,
+                //       ),
+                //     ),
+                //     Spacer(),
+                //     InkWell(
+                //       onTap: () {
+                //         Get.toNamed('/skintype');
+                //       },
+                //       child: Text(
+                //         "ดูทั้งหมด",
+                //         style: TextStyle(
+                //           color: Color.fromRGBO(32, 76, 62, 1),
+                //           decoration: TextDecoration.underline,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: [
+                //     ActionChip(
+                //       label: SizedBox(
+                //         width: 50,
+                //         child: Center(
+                //           child: Text(
+                //             "สิว",
+                //             style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
+                //           ),
+                //         ),
+                //       ),
+                //       backgroundColor: Colors.white,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadiusGeometry.circular(20),
+                //         side: BorderSide(color: Color.fromRGBO(32, 76, 62, 1)),
+                //       ),
+                //       onPressed: () {},
+                //     ),
+                //     ActionChip(
+                //       label: SizedBox(
+                //         width: 50,
+                //         child: Center(
+                //           child: Text(
+                //             "ผิวแห้ง",
+                //             style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
+                //           ),
+                //         ),
+                //       ),
+                //       backgroundColor: Colors.white,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadiusGeometry.circular(20),
+                //         side: BorderSide(color: Color.fromRGBO(32, 76, 62, 1)),
+                //       ),
+                //       onPressed: () {},
+                //     ),
+                //     ActionChip(
+                //       label: SizedBox(
+                //         width: 50,
+                //         child: Center(
+                //           child: Text(
+                //             "ผิวมีอายุ",
+                //             style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
+                //           ),
+                //         ),
+                //       ),
+                //       backgroundColor: Colors.white,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadiusGeometry.circular(20),
+                //         side: BorderSide(color: Color.fromRGBO(32, 76, 62, 1)),
+                //       ),
+                //       onPressed: () {},
+                //     ),
+                //   ],
+                // ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (searchController.text.isEmpty) ...[
+                          SizedBox(height: 18),
+                          Text(
+                            "สินค้าแนะนำ",
+                            style: TextStyle(
+                              color: Color.fromRGBO(32, 76, 62, 1),
+                              fontSize: 20,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 310,
+                            width: double.infinity,
+                            child: ListView.builder(
+                              itemCount: productHighlight.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return _cardProductHighlight(
+                                  productHighlight[index],
+                                  width: 220,
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          Text(
+                            "สินค้าทั้งหมด",
+                            style: TextStyle(
+                              color: Color.fromRGBO(32, 76, 62, 1),
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                        GridView.count(
+                          primary: false,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+
+                          crossAxisCount: 2,
+                          childAspectRatio: 9 / 16,
+                          children: <Widget>[
+                            ...filteredProducts.map(
+                              (e) => _cardProductHighlight(e),
+                            ), //update to ...filteredProducts.map
+                          ],
+                        ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 
