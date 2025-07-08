@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:outlined_text/outlined_text.dart';
 import 'package:skintigate/util/storage.dart';
 
@@ -65,9 +66,10 @@ class _LandingPageState extends State<LandingPage> {
                         Text(
                           "ค้นหาสินค้า",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18,
+                          style: GoogleFonts.athiti(
+                            fontSize: 19,
                             color: Color.fromRGBO(35, 96, 77, 1),
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
@@ -95,9 +97,10 @@ class _LandingPageState extends State<LandingPage> {
                         Text(
                           "สแกนส่วนผสม",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(31, 85, 68, 1),
+                          style: GoogleFonts.athiti(
+                            fontSize: 19,
+                            color: Color.fromRGBO(35, 96, 77, 1),
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
@@ -131,9 +134,10 @@ class _LandingPageState extends State<LandingPage> {
                         Text(
                           Storage().isLogin() ? "โปรไฟล์" : "เข้าสู่ระบบ",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(253, 254, 254, 1),
+                          style: GoogleFonts.athiti(
+                            fontSize: 19,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],

@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:outlined_text/outlined_text.dart';
@@ -209,13 +210,14 @@ class _ScanViewState extends State<ScanView> {
                           text: Text(
                             "เลือก 1 วิธี\nเพื่อสแกนสินค้าหรือส่วนผสม",
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color.fromRGBO(32, 76, 62, 1),
-                              fontSize: 22,
+                            style: GoogleFonts.athiti(
+                              fontSize: 24,
+                              color: Color.fromRGBO(35, 96, 77, 1),
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           strokes: [
-                            OutlinedTextStroke(color: Colors.white, width: 1.5),
+                            OutlinedTextStroke(color: Colors.white, width: 2),
                           ],
                         ),
                       ),
@@ -223,9 +225,10 @@ class _ScanViewState extends State<ScanView> {
                     SizedBox(height: 40),
                     Text(
                       "1.พิมพ์ชื่อสินค้าหรือส่วนผสม ",
-                      style: TextStyle(
-                        color: Color.fromRGBO(32, 76, 62, 1),
-                        fontSize: 19,
+                      style: GoogleFonts.athiti(
+                        fontSize: 22,
+                        color: Color.fromRGBO(35, 96, 77, 1),
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(height: 10),
@@ -297,10 +300,11 @@ class _ScanViewState extends State<ScanView> {
                     SizedBox(height: 30),
                     Center(
                       child: Text(
-                        "     2. ถ่ายรูปสินค้า\nหรือส่วนผสมหลังกล่อง",
-                        style: TextStyle(
-                          color: Color.fromRGBO(32, 76, 62, 1),
-                          fontSize: 19,
+                        "2. ถ่ายรูปสินค้าหรือส่วนผสมหลังกล่อง",
+                        style: GoogleFonts.athiti(
+                          fontSize: 22,
+                          color: Color.fromRGBO(35, 96, 77, 1),
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -315,12 +319,16 @@ class _ScanViewState extends State<ScanView> {
                         backgroundColor: Color.fromRGBO(13, 152, 106, 1),
                       ),
                       child: SizedBox(
-                        width: 50,
+                        width: 80,
                         height: 40,
                         child: Center(
                           child: Text(
-                            "อัพรูป",
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                            "อัพโหลดรูป",
+                            style: GoogleFonts.athiti(
+                              fontSize: 17,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),

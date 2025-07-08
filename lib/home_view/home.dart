@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -44,13 +45,6 @@ class _HomeState extends State<Home> {
       };
     }).toList();
   }
-
-  // Future<void> getProductAll() async {
-  //   productAll = await fetchProducts();
-  //   productHighlight = productAll.where((e) => e['highlight']).toList();
-  //   print(productHighlight.length);
-  // //   setState(() {});
-  // }
 
   Future<void> getProductAll() async {
     productAll = await fetchProducts();
@@ -118,87 +112,6 @@ class _HomeState extends State<Home> {
                     });
                   },
                 ),
-                // SizedBox(height: 18),
-                // Row(
-                //   children: [
-                //     Text(
-                //       "ค้นหาตามหมวดหมู่",
-                //       style: TextStyle(
-                //         color: Color.fromRGBO(32, 76, 62, 1),
-                //         fontSize: 20,
-                //       ),
-                //     ),
-                //     Spacer(),
-                //     InkWell(
-                //       onTap: () {
-                //         Get.toNamed('/skintype');
-                //       },
-                //       child: Text(
-                //         "ดูทั้งหมด",
-                //         style: TextStyle(
-                //           color: Color.fromRGBO(32, 76, 62, 1),
-                //           decoration: TextDecoration.underline,
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //   children: [
-                //     ActionChip(
-                //       label: SizedBox(
-                //         width: 50,
-                //         child: Center(
-                //           child: Text(
-                //             "สิว",
-                //             style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
-                //           ),
-                //         ),
-                //       ),
-                //       backgroundColor: Colors.white,
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadiusGeometry.circular(20),
-                //         side: BorderSide(color: Color.fromRGBO(32, 76, 62, 1)),
-                //       ),
-                //       onPressed: () {},
-                //     ),
-                //     ActionChip(
-                //       label: SizedBox(
-                //         width: 50,
-                //         child: Center(
-                //           child: Text(
-                //             "ผิวแห้ง",
-                //             style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
-                //           ),
-                //         ),
-                //       ),
-                //       backgroundColor: Colors.white,
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadiusGeometry.circular(20),
-                //         side: BorderSide(color: Color.fromRGBO(32, 76, 62, 1)),
-                //       ),
-                //       onPressed: () {},
-                //     ),
-                //     ActionChip(
-                //       label: SizedBox(
-                //         width: 50,
-                //         child: Center(
-                //           child: Text(
-                //             "ผิวมีอายุ",
-                //             style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
-                //           ),
-                //         ),
-                //       ),
-                //       backgroundColor: Colors.white,
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadiusGeometry.circular(20),
-                //         side: BorderSide(color: Color.fromRGBO(32, 76, 62, 1)),
-                //       ),
-                //       onPressed: () {},
-                //     ),
-                //   ],
-                // ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -208,9 +121,10 @@ class _HomeState extends State<Home> {
                           SizedBox(height: 18),
                           Text(
                             "สินค้าแนะนำ",
-                            style: TextStyle(
-                              color: Color.fromRGBO(32, 76, 62, 1),
-                              fontSize: 20,
+                            style: GoogleFonts.athiti(
+                              fontSize: 21,
+                              color: Color.fromRGBO(35, 96, 77, 1),
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(
@@ -230,9 +144,10 @@ class _HomeState extends State<Home> {
                           SizedBox(height: 15),
                           Text(
                             "สินค้าทั้งหมด",
-                            style: TextStyle(
-                              color: Color.fromRGBO(32, 76, 62, 1),
-                              fontSize: 20,
+                            style: GoogleFonts.athiti(
+                              fontSize: 21,
+                              color: Color.fromRGBO(35, 96, 77, 1),
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],

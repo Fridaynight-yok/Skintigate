@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:skintigate/util/storage.dart';
 
 class Saved extends StatefulWidget {
@@ -32,9 +33,13 @@ class _SavedState extends State<Saved> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "สินค้าที่ถูกใจ",
-          style: TextStyle(color: Color.fromRGBO(32, 76, 75, 1)),
+          style: GoogleFonts.athiti(
+            fontSize: 24,
+            color: Color.fromRGBO(35, 96, 77, 1),
+            fontWeight: FontWeight.w600,
+          ),
         ),
         backgroundColor: Colors.white,
         elevation: 0,

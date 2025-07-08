@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../util/storage.dart';
 
@@ -79,138 +80,165 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: InkWell(child: Icon(Icons.arrow_back)),
+    return Stack(
+      children: [
+        Image.asset(
+          "assets/image/home_page_.png",
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: 200,
         ),
-      ),
-      body: Column(
-        children: [
-          // Profile picture & name
-          Container(
-            width: double.infinity, // ให้ภายใน card ขยายเต็มแนวกว้าง
-            padding: const EdgeInsets.symmetric(
-              vertical: 12,
-            ), // padding ภายในเล็กน้อยให้ดูหายใจ
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 30,
-                backgroundImage: AssetImage("assets/icon/app_icon.png"),
-              ),
-              title: const Text(
-                "Welcome to Skintigate",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(32, 76, 75, 1),
-                ),
-              ),
-              subtitle: const Text(
-                "Your skin is our priority",
-                style: TextStyle(color: Color.fromRGBO(32, 76, 75, 1)),
-              ),
-              trailing: IconButton(
-                onPressed: () {
-                  _isEdit = !_isEdit;
-                  setState(() {});
-                },
-                icon: Icon(Icons.edit),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              readOnly: _isEdit,
-              controller: nameController,
-              decoration: InputDecoration(
-                hintText: "ชื่อ",
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-          Divider(height: 0.1, color: const Color.fromARGB(255, 189, 188, 188)),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              readOnly: _isEdit,
-              controller: emailController,
-              decoration: InputDecoration(
-                hintText: "อีเมล",
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-          Divider(height: 1, color: const Color.fromARGB(255, 189, 188, 188)),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              readOnly: _isEdit,
-              controller: bdayController,
-              decoration: InputDecoration(
-                hintText: "วันเกิด",
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-          Divider(height: 1, color: const Color.fromARGB(255, 189, 188, 188)),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              readOnly: _isEdit,
-              decoration: InputDecoration(
-                hintText: "เพศ",
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-          SizedBox(height: 24),
-          // Save Button
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF0B8F64),
-                // shape: StadiumBorder(),
-                // minimumSize: Size(double.infinity, 48),
-              ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
               onPressed: () {
-                updateData();
+                Get.back();
               },
-              child: SizedBox(
-                width: 50,
-                height: 40,
-                child: Center(
-                  child: Text("บันทึก", style: TextStyle(color: Colors.white)),
+              icon: InkWell(child: Icon(Icons.arrow_back)),
+            ),
+          ),
+          body: Column(
+            children: [
+              // Profile picture & name
+              Container(
+                width: double.infinity, // ให้ภายใน card ขยายเต็มแนวกว้าง
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                ), // padding ภายในเล็กน้อยให้ดูหายใจ
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 30,
+                    backgroundImage: AssetImage("assets/icon/app_icon.png"),
+                  ),
+                  title: const Text(
+                    "Welcome to Skintigate",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(32, 76, 75, 1),
+                    ),
+                  ),
+                  subtitle: const Text(
+                    "Your skin is our priority",
+                    style: TextStyle(color: Color.fromRGBO(32, 76, 75, 1)),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {
+                      _isEdit = !_isEdit;
+                      setState(() {});
+                    },
+                    icon: Icon(Icons.edit),
+                  ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(height: 16),
-          // Logout
-          TextButton(
-            onPressed: () {
-              Storage().removeUserId();
-
-              ///เอาออกจากระบบ
-              Get.offAllNamed('/');
-            },
-            child: Text(
-              "ออกจากระบบ",
-              style: TextStyle(
-                color: Colors.black87,
-                fontWeight: FontWeight.bold,
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  readOnly: _isEdit,
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    hintText: "ชื่อ",
+                    border: InputBorder.none,
+                  ),
+                ),
               ),
-            ),
+              Divider(
+                height: 0.1,
+                color: const Color.fromARGB(255, 189, 188, 188),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  readOnly: _isEdit,
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    hintText: "อีเมล",
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              Divider(
+                height: 1,
+                color: const Color.fromARGB(255, 189, 188, 188),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  readOnly: _isEdit,
+                  controller: bdayController,
+                  decoration: InputDecoration(
+                    hintText: "วันเกิด",
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              Divider(
+                height: 1,
+                color: const Color.fromARGB(255, 189, 188, 188),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  readOnly: _isEdit,
+                  decoration: InputDecoration(
+                    hintText: "เพศ",
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              SizedBox(height: 24),
+              // Save Button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF0B8F64),
+                    // shape: StadiumBorder(),
+                    // minimumSize: Size(double.infinity, 48),
+                  ),
+                  onPressed: () {
+                    updateData();
+                  },
+                  child: SizedBox(
+                    width: 50,
+                    height: 40,
+                    child: Center(
+                      child: Text(
+                        "บันทึก",
+                        style: GoogleFonts.athiti(
+                          fontSize: 17,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              // Logout
+              TextButton(
+                onPressed: () {
+                  Storage().removeUserId();
+
+                  ///เอาออกจากระบบ
+                  Get.offAllNamed('/');
+                },
+                child: Text(
+                  "ออกจากระบบ",
+                  style: GoogleFonts.athiti(
+                    fontSize: 17,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
