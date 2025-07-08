@@ -61,8 +61,13 @@ class _SavedState extends State<Saved> {
                   children: [
                     Text(
                       'กรุณาเข้าสู่ระบบ เพื่อดูสินค้าที่บันทึกไว้',
-                      style: TextStyle(color: Color.fromRGBO(32, 76, 62, 1)),
+                      style: GoogleFonts.athiti(
+                        fontSize: 18,
+                        color: Color.fromRGBO(35, 96, 77, 1),
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
+                    SizedBox(height: 10),
                     ElevatedButton(
                       onPressed: () {
                         Get.toNamed("/login");
@@ -71,12 +76,16 @@ class _SavedState extends State<Saved> {
                         backgroundColor: Color.fromRGBO(13, 152, 106, 1),
                       ),
                       child: SizedBox(
-                        width: 60,
+                        width: 70,
                         height: 40,
                         child: Center(
                           child: Text(
                             "เข้าสู่ระบบ",
-                            style: TextStyle(color: Colors.white, fontSize: 13),
+                            style: GoogleFonts.athiti(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
