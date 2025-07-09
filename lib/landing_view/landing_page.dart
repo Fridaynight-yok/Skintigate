@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:outlined_text/outlined_text.dart';
 import 'package:skintigate/util/storage.dart';
+import 'package:skintigate/util/video_player.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -16,12 +19,9 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(
-          "assets/image/first_page_.png",
-          fit: BoxFit.cover,
-          height: MediaQuery.sizeOf(context).height,
-        ),
-        Container(height: double.infinity, color: Color(0x50000000)),
+        VideoWidget(),
+
+        // Container(height: double.infinity, color: Color(0x50000000)),
         Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,

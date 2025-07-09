@@ -68,6 +68,7 @@ class _HomeState extends State<Home> {
           fit: BoxFit.cover,
           width: double.infinity,
           height: MediaQuery.sizeOf(context).height,
+          gaplessPlayback: true,
         ),
         Scaffold(
           appBar: AppBar(
@@ -79,6 +80,7 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.arrow_back),
             ),
           ),
+          backgroundColor: Colors.transparent,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: Column(
@@ -88,10 +90,21 @@ class _HomeState extends State<Home> {
                   controller: searchController,
                   decoration: InputDecoration(
                     hintText: "ค้นหาสินค้า",
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
+                    hintStyle: GoogleFonts.athiti(
+                      fontSize: 18,
+                      color: Color.fromRGBO(35, 96, 77, 1),
+                      fontWeight: FontWeight.w400,
                     ),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Color.fromRGBO(35, 96, 77, 1),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: EdgeInsets.all(0),
                   ),
                   onChanged: (value) {
                     final query = value.toLowerCase();

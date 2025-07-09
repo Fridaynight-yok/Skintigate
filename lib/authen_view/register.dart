@@ -98,9 +98,9 @@ class _RegisterState extends State<Register> {
               Text(
                 "Sign Up",
                 style: TextStyle(
-                  fontSize: 23,
-                  color: Color.fromRGBO(32, 76, 75, 1),
-                  fontWeight: FontWeight.w200,
+                  fontSize: 32,
+                  color: Color.fromRGBO(13, 152, 106, 1),
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 18),

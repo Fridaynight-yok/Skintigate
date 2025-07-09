@@ -113,11 +113,11 @@ class _ProfileState extends State<Profile> {
                     radius: 30,
                     backgroundImage: AssetImage("assets/icon/app_icon.png"),
                   ),
-                  title: const Text(
+                  title: Text(
                     "Welcome to Skintigate",
-                    style: TextStyle(
+                    style: GoogleFonts.lora(
+                      color: Color.fromRGBO(35, 96, 77, 1),
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(32, 76, 75, 1),
                     ),
                   ),
                   subtitle: const Text(

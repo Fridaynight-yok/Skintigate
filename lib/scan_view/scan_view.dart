@@ -255,6 +255,11 @@ class _ScanViewState extends State<ScanView> {
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: "พิมพ์ที่นี่",
+                            hintStyle: GoogleFonts.athiti(
+                              fontSize: 18,
+                              color: Color.fromRGBO(35, 96, 77, 1),
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                           onChanged: (value) {
                             setState(() {});

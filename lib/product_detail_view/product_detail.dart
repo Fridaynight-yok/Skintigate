@@ -48,7 +48,6 @@ class _ProductDetailState extends State<ProductDetail> {
 
   @override
   Widget build(BuildContext context) {
-    print(item);
     return Scaffold(
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
@@ -59,6 +58,7 @@ class _ProductDetailState extends State<ProductDetail> {
           onPressed: () => Get.back(),
           icon: const Icon(Icons.arrow_back, color: Colors.black),
         ),
+        forceMaterialTransparency: true,
         actions: [
           if (Storage().getUserId() != null)
             IconButton(
