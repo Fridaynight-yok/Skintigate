@@ -23,7 +23,10 @@ class _LandingPageState extends State<LandingPage> {
         ),
         Container(height: double.infinity, color: Color(0x50000000)),
         Scaffold(
-          appBar: AppBar(backgroundColor: Colors.transparent),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            automaticallyImplyLeading: false,
+          ),
           backgroundColor: Colors.transparent,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
