@@ -15,11 +15,23 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
+  bool isShowVideo = true;
+
+  void closeVideo() {
+    isShowVideo = false;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        VideoWidget(),
+        Image.asset(
+          "assets/image/landing_page_.png",
+          fit: BoxFit.cover,
+          height: MediaQuery.sizeOf(context).height,
+        ),
+        if (isShowVideo) VideoWidget(),
 
         // Container(height: double.infinity, color: Color(0x50000000)),
         Scaffold(
@@ -51,6 +63,7 @@ class _LandingPageState extends State<LandingPage> {
                 SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () {
+                    closeVideo();
                     Get.toNamed("/mainview", arguments: 0);
                   },
                   style: ElevatedButton.styleFrom(
@@ -64,7 +77,10 @@ class _LandingPageState extends State<LandingPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.search),
+                        Icon(
+                          Icons.search,
+                          color: Color.fromRGBO(35, 96, 77, 1),
+                        ),
                         SizedBox(width: 2),
                         Text(
                           "ค้นหาสินค้า",
@@ -82,6 +98,7 @@ class _LandingPageState extends State<LandingPage> {
                 SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
+                    closeVideo();
                     Get.toNamed("/mainview", arguments: 1);
                   },
                   style: ElevatedButton.styleFrom(
@@ -95,7 +112,10 @@ class _LandingPageState extends State<LandingPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.fullscreen),
+                        Icon(
+                          Icons.fullscreen,
+                          color: Color.fromRGBO(35, 96, 77, 1),
+                        ),
                         SizedBox(width: 2),
                         Text(
                           "สแกนส่วนผสม",
@@ -113,6 +133,8 @@ class _LandingPageState extends State<LandingPage> {
                 SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
+                    closeVideo();
+
                     if (Storage().isLogin()) {
                       Get.toNamed("/mainview", arguments: 3);
                     } else {

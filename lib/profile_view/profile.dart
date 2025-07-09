@@ -116,13 +116,18 @@ class _ProfileState extends State<Profile> {
                   title: Text(
                     "Welcome to Skintigate",
                     style: GoogleFonts.lora(
-                      color: Color.fromRGBO(35, 96, 77, 1),
+                      fontSize: 15,
+                      color: Color.fromRGBO(32, 76, 75, 1),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  subtitle: const Text(
+                  subtitle: Text(
                     "Your skin is our priority",
-                    style: TextStyle(color: Color.fromRGBO(32, 76, 75, 1)),
+                    style: GoogleFonts.lora(
+                      fontSize: 14,
+                      color: Color.fromRGBO(32, 76, 75, 1),
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                   trailing: IconButton(
                     onPressed: () {
@@ -183,7 +188,11 @@ class _ProfileState extends State<Profile> {
                 child: TextField(
                   readOnly: _isEdit,
                   decoration: InputDecoration(
-                    hintText: "เพศ",
+                    hintText: "ลักษณะผิว",
+                    hintStyle: GoogleFonts.athiti(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
                     border: InputBorder.none,
                   ),
                 ),

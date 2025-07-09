@@ -170,9 +170,10 @@ class _SavedState extends State<Saved> {
                             ),
                             Text(
                               item['skinmatch'] ?? '',
-                              style: const TextStyle(
+                              style: GoogleFonts.athiti(
                                 fontSize: 13,
                                 color: Colors.grey,
+                                fontWeight: FontWeight.w600,
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -183,9 +184,10 @@ class _SavedState extends State<Saved> {
                                 Flexible(
                                   child: Text(
                                     item['rating']?.toString() ?? '0.0',
-                                    style: const TextStyle(
+                                    style: GoogleFonts.athiti(
                                       fontSize: 13,
                                       color: Colors.grey,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                     maxLines: 1,
                                   ),

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:skintigate/util/storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -140,10 +141,10 @@ class _ProductDetailState extends State<ProductDetail> {
                     Text.rich(
                       TextSpan(
                         text: "แบรนด์: ",
-                        style: TextStyle(
+                        style: GoogleFonts.athiti(
+                          fontSize: 14,
+                          color: Color.fromRGBO(35, 96, 77, 1),
                           fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                          color: Color(0xFF204C3E),
                         ),
                         children: [
                           TextSpan(
@@ -161,20 +162,20 @@ class _ProductDetailState extends State<ProductDetail> {
                     Text.rich(
                       TextSpan(
                         text: "ผิวที่แนะนำ: ",
-                        style: TextStyle(
+                        style: GoogleFonts.athiti(
+                          fontSize: 14,
+                          color: Color.fromRGBO(35, 96, 77, 1),
                           fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                          color: Color(0xFF204C3E),
                         ),
                         children: [
                           TextSpan(
                             text:
                                 item["skinmatch"] ??
                                 "ผิวแห้ง, ผิวหมองคล้ำ, ผิวมัน",
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.black87,
+                            style: GoogleFonts.athiti(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
@@ -183,28 +184,30 @@ class _ProductDetailState extends State<ProductDetail> {
                     Text.rich(
                       TextSpan(
                         text: "อายุที่แนะนำ: ",
-                        style: TextStyle(
+                        style: GoogleFonts.athiti(
+                          fontSize: 14,
+                          color: Color.fromRGBO(35, 96, 77, 1),
                           fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                          color: Color(0xFF204C3E),
                         ),
                         children: [
                           TextSpan(
                             text:
                                 item["agematch"] ??
                                 "เหมาะกับอายุ 20 ปีขึ้นไปโดยเฉพาะช่วง 25-40 ปี ที่เริ่มมีปัญหาผิวจากความเครียด อายุ และแสงแดด เพราะ Galactomyces จะช่วยเรื่องผิวหมอง รอยแดง และผิวขาดน้ำ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              color: Colors.black87,
+                            style: GoogleFonts.athiti(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const Text(
-                      "หมาะกับผิวแพ้ง่ายไหม?",
-                      style: TextStyle(
-                        color: Color(0xFF204C3E),
+                    Text(
+                      "เหมาะกับผิวแพ้ง่ายไหม?: ",
+                      style: GoogleFonts.athiti(
+                        fontSize: 14,
+                        color: Color.fromRGBO(35, 96, 77, 1),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -216,9 +219,10 @@ class _ProductDetailState extends State<ProductDetail> {
                           child: Text(
                             item["sensitivity"] ??
                                 " มีส่วนผสมที่ให้ความชุ่มชื้นและช่วยฟื้นฟู  แต่มี Methylparaben, Sorbic Acid และ Sodium Benzoate ซึ่งอาจก่อให้เกิดการระคายเคืองกับคนที่ผิวแพ้ง่ายมาก",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black87,
+                            style: GoogleFonts.athiti(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
@@ -228,19 +232,20 @@ class _ProductDetailState extends State<ProductDetail> {
                     Text.rich(
                       TextSpan(
                         text: "ขั้นตอนในสกินแคร์รูทีน: ",
-                        style: TextStyle(
+                        style: GoogleFonts.athiti(
+                          fontSize: 14,
+                          color: Color.fromRGBO(35, 96, 77, 1),
                           fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                          color: Color(0xFF204C3E),
                         ),
                         children: [
                           TextSpan(
                             text:
                                 item["routine"] ??
                                 "เหมาะกับอายุ 20 ปีขึ้นไปโดยเฉพาะช่วง 25-40 ปี ที่เริ่มมีปัญหาผิวจากความเครียด อายุ และแสงแดด เพราะ Galactomyces จะช่วยเรื่องผิวหมอง รอยแดง และผิวขาดน้ำ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              color: Colors.black87,
+                            style: GoogleFonts.athiti(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
@@ -250,17 +255,18 @@ class _ProductDetailState extends State<ProductDetail> {
                     Text.rich(
                       TextSpan(
                         text: "ส่วนผสม: ",
-                        style: TextStyle(
+                        style: GoogleFonts.athiti(
+                          fontSize: 14,
+                          color: Color.fromRGBO(35, 96, 77, 1),
                           fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                          color: Color(0xFF204C3E),
                         ),
                         children: [
                           TextSpan(
                             text: item["ingredients"],
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              color: Colors.black87,
+                            style: GoogleFonts.athiti(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
@@ -275,19 +281,20 @@ class _ProductDetailState extends State<ProductDetail> {
                       child: Text.rich(
                         TextSpan(
                           text: "กดลิงค์เพื่อซื้อ: ",
-                          style: TextStyle(
+                          style: GoogleFonts.athiti(
+                            fontSize: 14,
+                            color: Color.fromRGBO(35, 96, 77, 1),
                             fontWeight: FontWeight.bold,
-                            fontSize: 13,
-                            color: Color(0xFF204C3E),
                           ),
                           children: [
                             TextSpan(
                               text:
                                   item["orderlink"] ??
                                   "https://s.shopee.co.th/2B3DdE9YOo",
-                              style: TextStyle(
-                                fontWeight: FontWeight.normal,
+                              style: GoogleFonts.athiti(
+                                fontSize: 14,
                                 color: Colors.blueAccent,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],

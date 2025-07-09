@@ -18,11 +18,17 @@ class _VideoWidgetState extends State<VideoWidget> {
           )
           ..initialize().then((_) {
             _controller.setVolume(0.0);
-            _controller.setLooping(true);
+            // _controller.setLooping(true);
             _controller.play();
             // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
             setState(() {});
           });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 
   @override
@@ -46,11 +52,5 @@ class _VideoWidgetState extends State<VideoWidget> {
             )
           : Container(),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
   }
 }
