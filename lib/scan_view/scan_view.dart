@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
@@ -267,8 +268,8 @@ class _ScanViewState extends State<ScanView> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 10),
                     if (controller.text.isNotEmpty) ...[
-                      SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () async {
                           _showLoading();
@@ -293,6 +294,32 @@ class _ScanViewState extends State<ScanView> {
                           child: Center(
                             child: Text(
                               "ค้นหา",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ] else ...[
+                      ElevatedButton(
+                        onPressed: () async {
+                          final data = await Clipboard.getData('text/plain');
+                          if (data != null) {
+                            controller.text = '${data.text}';
+                            setState(() {});
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(13, 152, 106, 1),
+                        ),
+                        child: SizedBox(
+                          width: 50,
+                          height: 40,
+                          child: Center(
+                            child: Text(
+                              "วาง",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,

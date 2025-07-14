@@ -44,23 +44,68 @@ class _LandingPageState extends State<LandingPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                SizedBox(height: 120),
-                OutlinedText(
-                  text: Text(
-                    "One click to unlock\nyour perfect skin match",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(32, 76, 62, 1),
+                SizedBox(height: 60),
+                Stack(
+                  children: [
+                    Image.asset(
+                      "assets/icon/app_splash.png",
+                      width: double.infinity,
+                      height: 200,
                     ),
-                  ),
-                  strokes: [
-                    OutlinedTextStroke(color: Colors.white, width: 2.7),
+                    Positioned(
+                      top: 135,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: OutlinedText(
+                          text: Text(
+                            "Decode your skin match",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.playfairDisplay(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(32, 76, 62, 1),
+                            ),
+                          ),
+                          strokes: [
+                            OutlinedTextStroke(color: Colors.white, width: 2.1),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
+                // OutlinedText(
+                //   text: Text(
+                //     "unlock your perfect skin",
+                //     textAlign: TextAlign.center,
+                //     style: TextStyle(
+                //       fontSize: 20,
+                //       fontWeight: FontWeight.bold,
+                //       color: Color.fromRGBO(32, 76, 62, 1),
+                //     ),
+                //   ),
+                //   strokes: [
+                //     OutlinedTextStroke(color: Colors.white, width: 2.7),
+                //   ],
+                // ),
 
-                SizedBox(height: 40),
+                // OutlinedText(
+                //   text: Text(
+                //     "One click to unlock\nyour perfect skin match",
+                //     textAlign: TextAlign.center,
+                //     style: TextStyle(
+                //       fontSize: 20,
+                //       fontWeight: FontWeight.bold,
+                //       color: Color.fromRGBO(32, 76, 62, 1),
+                //     ),
+                //   ),
+                //   strokes: [
+                //     OutlinedTextStroke(color: Colors.white, width: 2.7),
+                //   ],
+                // ),
+
+                // SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () {
                     closeVideo();

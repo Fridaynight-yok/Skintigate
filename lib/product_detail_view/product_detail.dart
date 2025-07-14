@@ -148,7 +148,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         ),
                         children: [
                           TextSpan(
-                            text: item['brand'],
+                            text: "${item['brand']}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 237, 106, 97),
@@ -262,7 +262,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         ),
                         children: [
                           TextSpan(
-                            text: item["ingredients"],
+                            text: "${item["ingredients"]}",
                             style: GoogleFonts.athiti(
                               fontSize: 14,
                               color: Colors.black,
